@@ -25,18 +25,12 @@ const FOOTER_LINKS: FooterSection[] = [
     links: [
       {
         label: 'GitHub',
-        href: 'https://github.com/jackyef/my-site',
-        type: 'external',
-      },
-      {
-        label: 'Twitter',
-        href: 'https://twitter.com/jackyef__',
-        rel: 'me',
+        href: 'https://github.com/siwakasen/blog',
         type: 'external',
       },
       {
         label: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/jackyef/',
+        href: 'https://www.linkedin.com/in/riksi/',
         rel: 'me',
         type: 'external',
       },

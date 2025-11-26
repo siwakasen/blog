@@ -40,7 +40,7 @@ export default async function (req: NextRequest) {
   ).then((res) => res.arrayBuffer());
 
   const url = req.nextUrl;
-  const title = url.searchParams.get('title') || 'jackyef.com';
+  const title = url.searchParams.get('title') || 'siwakasen.dev';
   const description = url.searchParams.get('description');
 
   return new ImageResponse(

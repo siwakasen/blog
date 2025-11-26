@@ -10,7 +10,7 @@ export function Logo() {
         src="/android-icon-96x96.png"
         alt="logo"
       />
-      <strong className="hidden ml-2 text sm:inline">jackyef.com</strong>
+      <strong className="hidden ml-2 text sm:inline">siwakasen.dev</strong>
     </div>
   );
 }

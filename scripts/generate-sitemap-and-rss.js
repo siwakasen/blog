@@ -58,9 +58,9 @@ const getDateInFrontMatter = (mdxContent) => {
 
 async function generateRSSFeed() {
   const feed = new RSS({
-    title: 'jackyef.com',
-    site_url: 'https://jackyef.com',
-    feed_url: 'https://jackyef.com/feed.xml',
+    title: 'siwakasen.dev',
+    site_url: 'https://siwakasen.dev',
+    feed_url: 'https://siwakasen.dev/feed.xml',
   });
   const posts = await globby(['src/pages/posts/**/index.mdx']);
   let contents = posts.map((post, index) => {

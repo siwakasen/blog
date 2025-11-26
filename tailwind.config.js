@@ -7,11 +7,6 @@ module.exports = {
      * Previously, we put it in the `next.config.js` file, but the token got purged.
      * It was caused by vercel renaming our original next.config.js file during build.
      *
-     * Log from debugging:
-     * 16:27:51.948  	-rw-r--r--   1 root root    908 Sep 26 09:27 next.config.js
-     * 16:27:51.948  	-rw-r--r--   1 root root   6595 Sep 26 09:27 next.config.original.1601112471648.js
-     * https://vercel.com/jackyef/jackyef/ekvzdkthq
-     * https://github.com/tailwindlabs/blog.tailwindcss.com/issues/13#issuecomment-699470309
      */
     './next.config.js',
     './safelists.js',

@@ -1,6 +1,6 @@
-## Welcome 👋
+## Hello, welcome to my Personal Blog👋
 
-This repo contains the code powering [jackyef.com](https://jackyef.com)
+This repo is under development
 
 The site is powered by:
 
@@ -8,11 +8,6 @@ The site is powered by:
 - ~~[Preact](https://preactjs.com)~~
 - [React](https://reactjs.org)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [Vercel](https://vercel.com)
-
-If you are interested on the thought process of building the site initially, you can read this blog post: [Building a Blog with Next + Preact + Tailwind](https://jackyef.com/posts/building-a-blog-with-next-preact-tailwind)
-
-As I added more stuff to the site, I've gone back to using React as some dependencies I am using aren't compatible with Preact. `radix-ui`, for instance.
 
 ### References:
 

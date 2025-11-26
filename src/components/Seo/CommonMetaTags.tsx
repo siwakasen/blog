@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'next/head';
 
-const domainName = `jackyef.com`;
+const domainName = `siwakasen.dev`;
 
 export const CommonMetaTags = () => {
   const themeMetaRef = React.useRef<HTMLMetaElement>(null);
