@@ -5,7 +5,7 @@ import { Logo } from './Logo';
 export const navLinks = [
   {
     href: '/',
-    'aria-label': "Jacky Efendi's personal site",
+    'aria-label': "Siwakasen's personal blog",
     onClick: () => {
       sendEventTracker({
         name: 'click',
