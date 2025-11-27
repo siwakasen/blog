@@ -61,6 +61,7 @@ const mdxComponents = {
   Surfaces,
   Colors,
 
+  GisCus: dynamic<any>(() => import('@giscus/react').then((m) => m.default)),
   KanbanBoard: dynamic<any>(() =>
     import('@/components/FlipDemos/KanbanBoard').then((m) => m.KanbanBoard),
   ),

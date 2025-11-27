@@ -1,6 +1,6 @@
 import { FeedbackFish } from '@feedback-fish/react';
 
-const FEEDBACK_FISH_PROJECTID = '6a8ca0f6d649bd';
+const FEEDBACK_FISH_PROJECTID = 'f05ff2120dbbc2';
 
 export interface FeedbackFishProps {
   children?: React.ReactNode;

@@ -129,11 +129,10 @@ export const LandingHero = () => {
         )}
       >
         <h1 className="text-4xl md:text-6xl font-bold font-heading text-theme-heading transition-colors">
-          Hi, I am Jacky! 👋
+          Hi, I am Siwakasen! 🙌
         </h1>
         <Paragraph>
-          I am a software engineer working with JavaScript and on
-          all-things-web. In general, I love{' '}
+          I am a just a guy who codes for fun, I love{' '}
           <Mark>
             balancing between infrastructure and product side of the frontend
           </Mark>{' '}

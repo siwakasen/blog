@@ -1,12 +1,8 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import tinytime from 'tinytime';
 
 import { PostMeta } from '@/blog/types';
 
-import { publicUrl } from '@/utils/constants';
-
-import { TwitterShare } from '../Social/TwitterShare';
 import { ExternalLink } from '../Typography/ExternalLink';
 
 import { useWebmention } from './hooks/useWebmention';
@@ -18,10 +14,9 @@ interface Props {
 
 const repliesTimeTemplate = tinytime('{DD} {MM} {YYYY} - {h}:{mm} {a}');
 
-const WebmentionWidget = ({ url, meta }: Props) => {
+const WebmentionWidget = ({ url }: Props) => {
   const { isLoading, isError, data, refetch } = useWebmention(url);
   const [showReplies, setShowReplies] = useState(false);
-  const router = useRouter();
 
   const content = (() => {
     if (isError) {
@@ -97,12 +92,6 @@ const WebmentionWidget = ({ url, meta }: Props) => {
               </div>
             </div>
           </div>
-
-          <TwitterShare
-            text={`${meta.title} ${publicUrl}${router.pathname} via @jackyef__`}
-          >
-            Share on Twitter
-          </TwitterShare>
 
           {showReplies ? (
             <div className="flex flex-col mt-4 space-y-4">

@@ -25,7 +25,7 @@ const FOOTER_LINKS: FooterSection[] = [
     links: [
       {
         label: 'GitHub',
-        href: 'https://github.com/siwakasen/blog',
+        href: 'https://github.com/siwakasen',
         type: 'external',
       },
       {
@@ -44,43 +44,18 @@ const FOOTER_LINKS: FooterSection[] = [
         href: '/about',
       },
       {
-        label: 'Readme',
-        href: '/about/readme',
-      },
-      {
-        label: 'Tokens',
-        href: '/about/tokens',
-      },
-      {
-        label: 'Uses',
-        href: '/uses',
-      },
-      {
-        label: 'Playground',
-        href: '/tools/playground',
+        label: 'Blogs',
+        href: '/blog',
       },
     ],
   },
   {
-    sectionTitle: 'Blog',
+    sectionTitle: 'Tags',
     links: [
-      {
-        label: 'All posts',
-        href: '/blog',
-      },
       {
         label: 'Tech',
         href: '/blog?tags=tech',
       },
-      {
-        label: 'Career',
-        href: '/blog?tags=career',
-      },
-      // Show this once we have post tagged 'life'
-      // {
-      //   label: 'Life',
-      //   href: '/blog?tags=life',
-      // },
     ],
   },
 ];
@@ -126,7 +101,7 @@ export const Footer = () => {
                 >
                   <h3
                     className={cn(
-                      'text-2xl',
+                      'text-lg',
                       'font-heading',
                       'text-theme-heading',
                     )}
@@ -160,9 +135,20 @@ export const Footer = () => {
               );
             })}
           </div>
-          <IOLazyFeedbackFish>
-            <LightButton>Got feedback?</LightButton>
-          </IOLazyFeedbackFish>
+          <div className="flex flex-col items-end">
+            <IOLazyFeedbackFish>
+              <LightButton>Got feedback?</LightButton>
+            </IOLazyFeedbackFish>
+            <p className="text-theme-subtitle text-xs pt-2">
+              Website template by{' '}
+              <a
+                href="https://github.com/jackyef/my-site"
+                className="hover:underline "
+              >
+                Jackyef
+              </a>
+            </p>
+          </div>
         </div>
       </SectionContainer>
     </footer>

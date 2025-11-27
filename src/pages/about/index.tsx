@@ -11,9 +11,6 @@ import { SectionTitle } from '@/components/Typography/SectionTitle';
 import { EmojiSpan } from '@/components/Typography/EmojiSpan';
 import { HistoryCalendar } from '@/components/HistoryCalendar';
 import { TechnologyAnchors } from '@/components/TechnologyAnchors';
-import { username } from '@/components/ChessComStats/ChessComStats';
-import { IOWrapper } from '@/components/IntersectionObserver/Wrapper';
-import { LazyChessComStats } from '@/components/ChessComStats/LazyChessComStats';
 
 import { cn } from '@/utils/styles/classNames';
 
@@ -168,36 +165,6 @@ export default function About() {
         more talks about the web. Who knows, I might add a <Code>/talk</Code>{' '}
         page on this site with the materials if it turns out to be a good idea!
       </Paragraph>
-      <HorizontalDivider />
-
-      <div
-        className={cn(
-          'flex flex-col lg:flex-row justify-between gap-0 lg:gap-16',
-        )}
-      >
-        <div className="flex-1 lg:max-w-[47%]">
-          <Paragraph className="lg:mt-20">
-            Whoa, you scrolled this far! As a reward, here&apos;s a fun fact. I
-            started playing chess in 2023 and found them to be pretty fun (on
-            good days 😂).
-          </Paragraph>
-          <Paragraph className="mb-0">
-            My alias is{' '}
-            <ExternalLink href="https://chess.com/member/pixelparser">
-              {username} on Chess.com
-            </ExternalLink>
-          </Paragraph>
-        </div>
-        <div className="flex-1 lg:max-w-[47%] min-h-[351px]">
-          <IOWrapper>
-            {(show) => {
-              if (!show) return null;
-
-              return <LazyChessComStats />;
-            }}
-          </IOWrapper>
-        </div>
-      </div>
       <HorizontalDivider />
     </>
   );

@@ -10,13 +10,13 @@ import { useShouldAnimateNavigation } from '@/contexts/navigation';
 import { MDXProvider } from '@/components/common/MDX';
 import { Post as PostType } from '@/blog/types';
 import { getHslaColor } from '@/lib/styles/colors';
-import { TwitterShare } from '@/components/Social/TwitterShare';
 
 import { cn } from '@/utils/styles/classNames';
 import { createOgImageUrl } from '@/utils/createOgImageUrl';
 
 import { PostHeader } from './PostHeader';
 import { TableOfContents } from './TableOfContents';
+import Giscus from '@giscus/react';
 
 const postDateTemplate = tinytime('{MM} {DD}, {YYYY}');
 
@@ -29,7 +29,6 @@ interface Props {
 
 export default function Post({ post }: Props) {
   const router = useRouter();
-  const fullUrl = `https://jackyef.com${router.pathname}`;
   const shouldAnimateNavigation = useShouldAnimateNavigation();
   const isBlogPost = router.pathname.startsWith('/posts/');
 
@@ -102,9 +101,21 @@ export default function Post({ post }: Props) {
           <HorizontalDivider />
 
           {isBlogPost && (
-            <TwitterShare text={`${meta.title} ${fullUrl} via @jackyef__`}>
-              Share on Twitter
-            </TwitterShare>
+            <Giscus
+              id="comments"
+              repo="siwakasen/blog"
+              repoId="R_kgDOQdQuYg"
+              category="General"
+              categoryId="DIC_kwDOQdQuYs4CzGEG"
+              mapping="pathname"
+              term="Welcome to @giscus/react component!"
+              reactionsEnabled="1"
+              emitMetadata="0"
+              inputPosition="top"
+              theme="preferred_color_scheme"
+              lang="en"
+              loading="lazy"
+            />
           )}
         </div>
       </article>
