@@ -87,7 +87,7 @@ module.exports = {
         // Required for pathGroups to work.
         pathGroupsExcludedImportTypes: ['builtin'],
         // Add an empty line between import groups.
-        'newlines-between': 'always',
+        // 'newlines-between': 'always',
       },
     ],
 

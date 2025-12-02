@@ -24,7 +24,7 @@ export const useStaticResult = ({ query }: Params) => {
 
   useEffect(() => {
     if (query) {
-      setActionQueries(query ? filterValidQueries(query, router) : []);
+      setActionQueries(query ? filterValidQueries(query) : []);
       setPageSearchResult(query ? filterPages(query) : []);
       setExternalLinkResult(query ? filterExternalLinks(query) : []);
     } else {
