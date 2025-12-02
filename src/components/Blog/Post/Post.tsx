@@ -3,20 +3,17 @@ import { spring } from 'react-flip-toolkit';
 import tinytime from 'tinytime';
 import { useRouter } from 'next/router';
 import { css } from 'goober';
-
+import Giscus from '@giscus/react';
 import { PageMetaTags } from '@/components/Seo/PageMetaTags';
 import { HorizontalDivider } from '@/components/Divider';
 import { useShouldAnimateNavigation } from '@/contexts/navigation';
 import { MDXProvider } from '@/components/common/MDX';
 import { Post as PostType } from '@/blog/types';
 import { getHslaColor } from '@/lib/styles/colors';
-
 import { cn } from '@/utils/styles/classNames';
 import { createOgImageUrl } from '@/utils/createOgImageUrl';
-
 import { PostHeader } from './PostHeader';
 import { TableOfContents } from './TableOfContents';
-import Giscus from '@giscus/react';
 
 const postDateTemplate = tinytime('{MM} {DD}, {YYYY}');
 
@@ -104,9 +101,9 @@ export default function Post({ post }: Props) {
             <Giscus
               id="comments"
               repo="siwakasen/blog"
-              repoId="R_kgDOQdQuYg"
+              repoId="R_kgDOQg6q1A"
               category="General"
-              categoryId="DIC_kwDOQdQuYs4CzGEG"
+              categoryId="DIC_kwDOQg6q1M4CzSbe"
               mapping="pathname"
               term="Welcome to @giscus/react component!"
               reactionsEnabled="1"

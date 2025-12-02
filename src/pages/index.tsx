@@ -23,7 +23,7 @@ export default function Home({ posts }: Props) {
     <>
       <PageMetaTags />
 
-      <section aria-label="hero section">
+      <section aria-label="hero section" className=" min-w-screen">
         {wasRedirected && (
           <Panel title="⚠ Notice" type="info">
             <Paragraph>
@@ -38,6 +38,15 @@ export default function Home({ posts }: Props) {
             </Paragraph>
           </Panel>
         )}
+        <div className="absolute left-1/2 -translate-x-1/2 top-20 w-screen max-w-full">
+          <img
+            alt="culture background"
+            loading="lazy"
+            decoding="async"
+            className="absolute w-full object-contain flex justify-center opacity-[15%]"
+            src="/assets/background/ai.svg"
+          />
+        </div>
         <LandingHero />
       </section>
 

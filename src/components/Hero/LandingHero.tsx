@@ -116,7 +116,7 @@ export const LandingHero = () => {
     <>
       <div
         className={cn(
-          container,
+          // container, //removing the card
           'p-4',
           'pb-8',
           'sm:p-8',
@@ -129,7 +129,7 @@ export const LandingHero = () => {
         )}
       >
         <h1 className="text-4xl md:text-6xl font-bold font-heading text-theme-heading transition-colors">
-          Hi, I am Siwakasen! 🙌
+          Hi, I am Siwakasen! 👋
         </h1>
         <Paragraph>
           I am a just a guy who codes for fun, I love{' '}
@@ -142,16 +142,16 @@ export const LandingHero = () => {
         <Paragraph>
           I am{' '}
           <ExternalLink
-            href="https://twitter.com/jackyef__"
+            href="https://github.com/siwakasen"
             onClick={() => {
               sendEventTracker({
                 name: 'click',
                 category: `${router.pathname} - hero`,
-                label: '@jackyef__ on Twitter',
+                label: 'siwakasen on Twitter',
               });
             }}
           >
-            @jackyef__ on Twitter
+            siwakasen on Github
           </ExternalLink>
           . From time to time, I tweet about things I learned in my personal
           journey, be it tech, career, or even just general things about life.

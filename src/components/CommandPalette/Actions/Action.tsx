@@ -41,7 +41,7 @@ export const Action = ({
     if (isThemeToggleAction) {
       setTheme(theme === 'dark' ? 'default' : 'dark');
     } else if (isShareArticleAction) {
-      const text = `${document.title} ${publicUrl}${router.pathname} via @jackyef__`;
+      const text = `${document.title} ${publicUrl}${router.pathname} via @siwakasen`;
 
       window.open(
         `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,

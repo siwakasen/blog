@@ -1,42 +1,7 @@
 [
   {
-    "title": "6 Things I Learned during my Remote Job Search",
-    "description": "I recently landed my first remote job as a software engineer! Here are some of the stuff that I learned during the process.",
-    "link": "/posts/6-things-i-learned-during-my-remote-job-search"
-  },
-  {
-    "title": "A year into working remotely – A retrospective 💭",
-    "description": "Around a year ago, I left a cushy job at an Indonesian tech unicorn, looking for something else. Today I share about my experience through all of it.",
-    "link": "/posts/a-year-into-working-remotely-a-retrospective"
-  },
-  {
-    "title": "Building a Blog with Next.js + Preact + Tailwind",
-    "description": "I rewrote my personal site from Gatsby.js to Next.js, and added a blog. Might as well write a first post on it, right?",
-    "link": "/posts/building-a-blog-with-next-preact-tailwind"
-  },
-  {
-    "title": "Building an Audio-loop Player on the Web 🔉♻️",
-    "description": "Some learnings from building Tranquil, a web-app for mixing environmental sounds.",
-    "link": "/posts/building-an-audio-loop-player-on-the-web"
-  },
-  {
-    "title": "Tech folks, take care of yourself 🏃‍♂️",
-    "description": "Recent life events served as a wake-up call for me. It was an expensive learning experience that I wished someone would warn me about before.",
-    "link": "/posts/tech-folks-take-care-of-yourself"
-  },
-  {
-    "title": "Transitioning between 2 different elements with FLIP",
-    "description": "Learn the concept of FLIP to unlock new transition possibilities, while writing your own FLIP library in the process.",
-    "link": "/posts/transitioning-between-2-different-elements-with-flip"
-  },
-  {
-    "title": "Web security implications of 3rd party resources 🕵️‍♂️",
-    "description": "Understand what you are opening your site up to when using 3rd party resources.",
-    "link": "/posts/web-security-implications-of-3rd-party-resources"
-  },
-  {
-    "title": "Writing Your Own CSS-in-JS Library",
-    "description": "Learn how to create a simple, minimal CSS-in-JS library with vendor prefixing + server rendering support!",
-    "link": "/posts/writing-your-own-css-in-js-library"
+    "title": "Test Blog",
+    "description": "testing github discussions",
+    "link": "/posts/test-blog"
   }
 ]

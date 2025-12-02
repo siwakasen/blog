@@ -139,15 +139,6 @@ export const Footer = () => {
             <IOLazyFeedbackFish>
               <LightButton>Got feedback?</LightButton>
             </IOLazyFeedbackFish>
-            <p className="text-theme-subtitle text-xs pt-2">
-              Website template by{' '}
-              <a
-                href="https://github.com/jackyef/my-site"
-                className="hover:underline "
-              >
-                Jackyef
-              </a>
-            </p>
           </div>
         </div>
       </SectionContainer>
