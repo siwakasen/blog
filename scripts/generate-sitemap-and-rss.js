@@ -87,10 +87,10 @@ async function generateRSSFeed() {
     feed.item({
       title: getTitleInFrontMatter(content),
       guid: path,
-      url: `https://jackyef.com${path}`,
+      url: `https://siwakasen.dev${path}`,
       date: getDateInFrontMatter(content),
       description: getDescriptionInFrontMatter(content),
-      custom_elements: [{ author: [{ name: 'Jacky Efendi' }] }],
+      custom_elements: [{ author: [{ name: 'Siwakasen' }] }],
     });
   });
 
@@ -122,7 +122,7 @@ async function generateSiteMap() {
 
             return `
                   <url>
-                    <loc>${`https://jackyef.com/${route}`}</loc>
+                    <loc>${`https://siwakasen.dev/${route}`}</loc>
                   </url>`;
           })
           .join('')}

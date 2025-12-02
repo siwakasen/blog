@@ -93,7 +93,7 @@ export default async function (req: NextRequest) {
             fontSize: 70,
           }}
         >
-          🤓📝
+          🧐📋
         </span>
         <span
           tw="absolute text-2xl bottom-16 right-16 text-slate-500"
@@ -102,7 +102,7 @@ export default async function (req: NextRequest) {
             fontWeight: 400,
           }}
         >
-          @jackyef__
+          @siwakasen
         </span>
       </div>
     ),

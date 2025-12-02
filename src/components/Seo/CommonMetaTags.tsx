@@ -78,27 +78,27 @@ export const CommonMetaTags = () => {
       />
 
       {/* Used for webmention login via indielogin.com */}
-      {/* <link href="https://github.com/jackyef" rel="me authn" /> */}
+      <link href="https://github.com/siwakasen" rel="me authn" />
 
-      {/* <link
+      <link
         rel="webmention"
         href={`https://webmention.io/${domainName}/webmention`}
       />
       <link
         rel="pingback"
         href={`https://webmention.io/${domainName}/xmlrpc`}
-      /> */}
+      />
 
       {/* indieauth auth */}
-      {/* <link rel="authorization_endpoint" href="https://indieauth.com/auth" />
-      <link rel="token_endpoint" href="https://tokens.indieauth.com/token" /> */}
+      <link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+      <link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
 
       <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-      <meta name="apple-mobile-web-app-title" content="jackyef" />
-      <meta name="application-name" content="jackyef" />
+      <meta name="apple-mobile-web-app-title" content="siwakasen" />
+      <meta name="application-name" content="siwakasen" />
     </Head>
   );
 };

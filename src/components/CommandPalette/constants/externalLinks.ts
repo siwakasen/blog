@@ -8,21 +8,14 @@ export const EXTERNAL_LINKS: readonly PageData[] = [
   {
     title: 'Source code',
     description: `I keep the code for this site open-source on GitHub. It's not the prettiest, but you might find it useful. 🤓`,
-    link: 'https://github.com/jackyef/my-site',
+    link: 'https://github.com/siwakasen/blog',
     hiddenSearchTerm: 'social gh',
   },
   {
     title: 'GitHub',
     description: 'Check out my GitHub profile 🐙🐱',
-    link: 'https://github.com/jackyef',
+    link: 'https://github.com/siwakasen',
     hiddenSearchTerm: 'social gh',
-  },
-  {
-    title: 'Twitter',
-    description:
-      'Follow me on Twitter! I tweet random stuff related to tech and adulting life there 🙂',
-    link: 'https://twitter.com/jackyef__',
-    hiddenSearchTerm: 'social',
   },
 ];
 

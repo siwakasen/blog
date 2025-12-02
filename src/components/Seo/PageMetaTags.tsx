@@ -9,7 +9,7 @@ const defaultTitle = 'Siwakasen | Software Engineer, Sysadmin, Devops';
 const defaultDescription =
   'Personal blog of Siwakasen. I passionate with how internet works. 🌐';
 
-const defaultOgImageTitle = `Hi, I am Jacky!`;
+const defaultOgImageTitle = `Hi, I am Siwakasen!`;
 const defaultOgImage = createOgImageUrl({ title: defaultOgImageTitle });
 
 interface Props {
@@ -46,7 +46,6 @@ export const PageMetaTags: React.FC<Props> = ({
       {/* Twitter Meta Tags  */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:site" content={url} />
-      <meta property="twitter:creator" content="@jackyef__" />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
@@ -77,19 +76,19 @@ export const PageMetaTags: React.FC<Props> = ({
           "dateModified": "${publishDate}",
           "author": {
             "@type": "Person",
-            "@id": "https://twitter.com/jackyef__",
-            "name": "Jacky Efendi",
-            "url": "https://twitter.com/jackyef__"
+            "@id": "https://github.com/siwakasen",
+            "name": "Siwakasen",
+            "url": "https://github.com/siwakasen"
           },
           "publisher": {
               "@type": "Person",
-              "@id": "https://twitter.com/jackyef__",
-              "name": "Jacky Efendi",
-              "url": "https://twitter.com/jackyef__"
+              "@id": "https://github.com/siwakasen",
+              "name": "Siwakasen",
+              "url": "https://github.com/siwakasen"
           },
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://jackyef.com/"
+            "@id": "https://siwakasen.dev/"
           }
         }`,
         }}

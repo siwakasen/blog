@@ -132,7 +132,7 @@ export default function About() {
             and learning, some are actually kind of helpful. A lot are abandoned
             because I got sidetracked (don’t we all? 😅). I published some of
             them in the open on{' '}
-            <ExternalLink href="https://github.com/jackyef">
+            <ExternalLink href="https://github.com/siwakasen">
               GitHub
             </ExternalLink>
             . I also contribute to open source libraries when I could.
