@@ -13,19 +13,6 @@ import { Mark } from '../common/Mark';
 
 export const LandingHero = () => {
   const router = useRouter();
-  const container = css`
-    --bg-opacity: 0.4;
-    background: hsla(${getHslString('bg')} / var(--bg-opacity));
-    backdrop-filter: contrast(105%) saturate(120%) blur(8px);
-    z-index: 3;
-    transition: background var(--transition-default),
-      opacity var(--transition-default);
-
-    @supports (backdrop-filter: blur(8px)) {
-      --bg-opacity: 0.2;
-      box-shadow: 0 6px 6px 0px ${getHslaColor('bg', 0.4)};
-    }
-  `;
 
   const baseCtaButton = css`
     display: inline-block;
