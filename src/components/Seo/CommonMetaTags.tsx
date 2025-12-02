@@ -78,20 +78,20 @@ export const CommonMetaTags = () => {
       />
 
       {/* Used for webmention login via indielogin.com */}
-      <link href="https://github.com/jackyef" rel="me authn" />
+      {/* <link href="https://github.com/jackyef" rel="me authn" /> */}
 
-      <link
+      {/* <link
         rel="webmention"
         href={`https://webmention.io/${domainName}/webmention`}
       />
       <link
         rel="pingback"
         href={`https://webmention.io/${domainName}/xmlrpc`}
-      />
+      /> */}
 
       {/* indieauth auth */}
-      <link rel="authorization_endpoint" href="https://indieauth.com/auth" />
-      <link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+      {/* <link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+      <link rel="token_endpoint" href="https://tokens.indieauth.com/token" /> */}
 
       <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
