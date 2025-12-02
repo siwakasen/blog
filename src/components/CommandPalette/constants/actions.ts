@@ -35,11 +35,5 @@ export const filterValidQueries = (
     words.every((word) => q.toLowerCase().includes(word)),
   );
 
-  // const isPostPage = router.pathname.startsWith('/posts/');
-
   return filtered;
-
-  // return isPostPage
-  //   ? filtered
-  //   : filtered.filter((q) => q !== 'Share this article');
 };
