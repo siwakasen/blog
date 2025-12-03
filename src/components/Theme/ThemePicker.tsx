@@ -110,7 +110,8 @@ export const ThemePicker = () => {
               maxWidth: '52rem',
             }}
           >
-            <div className="flex justify-end mb-2">
+            <div className="flex justify-between mb-2">
+              <SectionTitle>Pick a theme</SectionTitle>
               <Dialog.Close asChild>
                 <button
                   aria-label="Close"
@@ -120,7 +121,6 @@ export const ThemePicker = () => {
                 </button>
               </Dialog.Close>
             </div>
-            <SectionTitle>Pick a theme</SectionTitle>
             <div
               className={cn(
                 'grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4',
