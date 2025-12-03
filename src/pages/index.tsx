@@ -23,7 +23,7 @@ export default function Home({ posts }: Readonly<Props>) {
             loading="lazy"
             decoding="async"
             data-nimg="fill"
-            className="absolute w-full object-contain justify-center opacity-[0.2]"
+            className="absolute w-full object-contain justify-center opacity-[0.15]"
             src="/assets/background/ai.svg"
           />
         </div>

@@ -68,8 +68,7 @@ export const HistoryCalendar = () => {
 
       <div className="isolate flex flex-auto flex-col md:flex-row overflow-hidden bg-surface-5 shadow-surface-5 rounded-2xl">
         <Timeline
-          // Start our story from 2017
-          timelineBeginning={new Date('2017-01-01')}
+          timelineBeginning={new Date('2021-06-01')}
           activeEventIndex={activeEventIndex}
           isScrollTriggerEnabled={isScrollTriggerEnabled}
         >
