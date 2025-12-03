@@ -1,7 +1,6 @@
 import { Flipped } from 'react-flip-toolkit';
 import { GetStaticProps } from 'next/types';
 import { useRouter } from 'next/router';
-
 import { PageMetaTags } from '@/components/Seo/PageMetaTags';
 import { PostPreviewList } from '@/components/Blog/Post/PostPreviewList';
 import { SectionTitle } from '@/components/Typography/SectionTitle';
@@ -10,6 +9,9 @@ import { Post } from '@/blog/types';
 import { getPosts } from '@/blog/getPosts';
 import { Panel } from '@/components/common/Panel';
 import { Paragraph } from '@/components/Typography/Paragraph';
+import { useContext } from 'react';
+import { ThemeContext } from '@/components/Theme/ThemeProvider';
+import { SkipSSR } from '@/components/SkipSSR';
 
 type Props = {
   posts: Post[];
@@ -18,6 +20,7 @@ type Props = {
 export default function Home({ posts }: Props) {
   const router = useRouter();
   const wasRedirected = router.query.status === 'redirected';
+  const [theme] = useContext(ThemeContext);
 
   return (
     <>
@@ -39,13 +42,19 @@ export default function Home({ posts }: Props) {
           </Panel>
         )}
         <div className="absolute left-1/2 -translate-x-1/2 top-20 w-screen max-w-full">
-          <img
-            alt="culture background"
-            loading="lazy"
-            decoding="async"
-            className="absolute w-full object-contain flex justify-center opacity-[15%]"
-            src="/assets/background/ai.svg"
-          />
+          <SkipSSR>
+            <img
+              alt="culture background by alif.web.id"
+              loading="lazy"
+              decoding="async"
+              className={`absolute w-full object-contain flex justify-center ${
+                theme === 'default' || theme === 'purple-and-gold'
+                  ? 'opacity-[0.25]'
+                  : 'opacity-10'
+              }`}
+              src="/assets/background/ai.svg"
+            />
+          </SkipSSR>
         </div>
         <LandingHero />
       </section>

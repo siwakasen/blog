@@ -1,4 +1,4 @@
-import { useLayoutEffect, useEffect } from 'react';
+import { useLayoutEffect, useEffect, useContext } from 'react';
 import { spring } from 'react-flip-toolkit';
 import tinytime from 'tinytime';
 import { useRouter } from 'next/router';
@@ -14,8 +14,8 @@ import { cn } from '@/utils/styles/classNames';
 import { createOgImageUrl } from '@/utils/createOgImageUrl';
 import { PostHeader } from './PostHeader';
 import { TableOfContents } from './TableOfContents';
-
 const postDateTemplate = tinytime('{MM} {DD}, {YYYY}');
+import { ThemeContext } from '@/components/Theme/ThemeProvider';
 
 const useIsomorphicLayoutEffect =
   typeof window === 'undefined' ? useEffect : useLayoutEffect;
@@ -28,8 +28,8 @@ export default function Post({ post }: Props) {
   const router = useRouter();
   const shouldAnimateNavigation = useShouldAnimateNavigation();
   const isBlogPost = router.pathname.startsWith('/posts/');
-
   const { metadata: meta } = post;
+  const [theme] = useContext(ThemeContext);
 
   useIsomorphicLayoutEffect(() => {
     const el = document.getElementById('restOfArticle');
@@ -109,7 +109,11 @@ export default function Post({ post }: Props) {
               reactionsEnabled="1"
               emitMetadata="0"
               inputPosition="top"
-              theme="preferred_color_scheme"
+              theme={
+                theme === 'default' || theme == 'purple-and-gold'
+                  ? 'light'
+                  : 'dark'
+              }
               lang="en"
               loading="lazy"
             />
