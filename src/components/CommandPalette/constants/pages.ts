@@ -21,48 +21,6 @@ export const PAGES: readonly PageData[] = [
       'Get to know me! This page contains what I worked on, where I worked at, where to find me, etc.',
     link: '/about',
   },
-  {
-    title: 'Tokens 🖌️',
-    description: 'Shows some of the design tokens used on this site.',
-    link: '/about/tokens',
-  },
-  {
-    title: 'Uses',
-    description: 'List of things that I use daily',
-    link: '/uses',
-  },
-
-  // Tools
-  {
-    title: 'Tools ▶️ Code playground',
-    description: `A playground for testing code snippets with framer-motion and tailwind css`,
-    link: '/tools/playground',
-  },
-  {
-    title: 'Tools ▶️ Claymorphism',
-    description: `Simple tool for generating for claymorphism-style CSS`,
-    link: '/tools/claymorphism',
-  },
-  {
-    title: 'Tools ▶️ Speech-to-text',
-    description: `Speech-to-text demo using the Web Speech API's SpeechRecognition`,
-    link: '/tools/speech-to-text',
-    hiddenSearchTerm: 'voice',
-  },
-
-  // Absurd UI components
-  {
-    title: 'Absurd UI components',
-    description:
-      'A collection of absurd UI components that are not practical but fun to play with.',
-    link: '/absurd-ui',
-  },
-
-  {
-    title: 'Absurd UI ▶️ Ballistic Slider',
-    description: 'A slider with some ballistic physics baked in..',
-    link: '/absurd-ui/ballistic-slider',
-  },
 ];
 
 export const filterPages = (query: string): PageData[] => {

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { createOgImageUrl } from '@/utils/createOgImageUrl';
 import { publicUrl } from '@/utils/constants';
 
-const defaultTitle = 'Siwakasen | Software Engineer, Sysadmin, Devops';
+const defaultTitle = 'Siwakasen | Tech Enthusiast';
 const defaultDescription =
   'Personal blog of Siwakasen. I passionate with how internet works. 🌐';
 

@@ -32,6 +32,8 @@ export type Props = BaseEvent & {
   isActive?: boolean;
   onClick?: () => void;
   onScrollTrigger?: () => void;
+  lane?: number;
+  maxLanes?: number;
 };
 
 export const TimelineEvent = ({
@@ -45,12 +47,15 @@ export const TimelineEvent = ({
   variant,
   onClick,
   onScrollTrigger,
+  lane = 0,
+  maxLanes = 1,
 }: Props) => {
   const {
     containerRef,
     totalMonths: totalTimelineMonths,
     activeEventIndex,
     isScrollTriggerEnabled,
+    sizePerBlock,
   } = useTimelineContext();
   const ref = useRef<HTMLLIElement>(null);
   const startingPosition = getMonthDifference(to, TODAY);
@@ -98,18 +103,30 @@ export const TimelineEvent = ({
     onClick?.();
   };
 
+  // Calculate position using calc() for flexibility
+
+  const monthHeight = `calc(${totalMonths} * ${sizePerBlock})`;
+  const topOffset = `calc(${startingPosition} * ${sizePerBlock})`;
+
+  // Calculate width and left offset based on lane
+  const widthPercentage = 100 / maxLanes;
+  const leftPercentage = lane * widthPercentage;
+
   return (
     <li
       ref={ref}
       className={cn(
-        'relative mt-px flex',
+        'absolute mt-px',
         css`
           scroll-margin-top: 3.5rem;
           scroll-padding-top: 3.5rem;
           filter: var(--filter-brightness);
+          top: ${topOffset};
+          height: ${monthHeight};
+          left: ${leftPercentage}%;
+          width: ${widthPercentage}%;
         `,
       )}
-      style={{ gridRow: `${startingPosition + 1} / span ${totalMonths}` }}
     >
       <button
         id={id}

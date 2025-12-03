@@ -10,13 +10,12 @@ import { useShouldAnimateNavigation } from '@/contexts/navigation';
 import { MDXProvider } from '@/components/common/MDX';
 import { Post as PostType } from '@/blog/types';
 import { getHslaColor } from '@/lib/styles/colors';
+import { ThemeContext } from '@/components/Theme/ThemeProvider';
 import { cn } from '@/utils/styles/classNames';
 import { createOgImageUrl } from '@/utils/createOgImageUrl';
 import { PostHeader } from './PostHeader';
 import { TableOfContents } from './TableOfContents';
 const postDateTemplate = tinytime('{MM} {DD}, {YYYY}');
-import { ThemeContext } from '@/components/Theme/ThemeProvider';
-
 const useIsomorphicLayoutEffect =
   typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
@@ -24,7 +23,7 @@ interface Props {
   post: PostType;
 }
 
-export default function Post({ post }: Props) {
+export default function Post({ post }: Readonly<Props>) {
   const router = useRouter();
   const shouldAnimateNavigation = useShouldAnimateNavigation();
   const isBlogPost = router.pathname.startsWith('/posts/');

@@ -31,6 +31,62 @@ export const Timeline = ({
 
   const ref = useRef<HTMLDivElement>(null);
 
+  // Calculate lanes for overlapping events
+  const childrenArray = Array.isArray(children) ? children : [children];
+  const eventsWithLanes = childrenArray.map((child: any) => {
+    const from = child?.props?.from;
+    const to = child?.props?.to;
+    return {
+      child,
+      from,
+      to,
+      lane: 0,
+      hasOverlap: false,
+    };
+  });
+
+  // Assign lanes to prevent overlaps
+  eventsWithLanes.forEach((event, i) => {
+    const occupiedLanes = new Set<number>();
+    let hasAnyOverlap = false;
+
+    eventsWithLanes.forEach((otherEvent, j) => {
+      if (i === j) return;
+
+      // Check if events overlap
+      if (event.from && event.to && otherEvent.from && otherEvent.to) {
+        const overlaps =
+          event.from <= otherEvent.to && event.to >= otherEvent.from;
+        if (overlaps) {
+          hasAnyOverlap = true;
+          if (j < i) {
+            occupiedLanes.add(otherEvent.lane);
+          }
+        }
+      }
+    });
+
+    event.hasOverlap = hasAnyOverlap;
+
+    // Find first available lane only if there's an overlap
+    if (hasAnyOverlap) {
+      let lane = 0;
+      while (occupiedLanes.has(lane)) {
+        lane++;
+      }
+      event.lane = lane;
+    } else {
+      event.lane = 0;
+    }
+  });
+
+  // Calculate max lanes only for overlapping groups
+  const overlappingEvents = eventsWithLanes.filter((e) => e.hasOverlap);
+  const maxLanes =
+    overlappingEvents.length > 0
+      ? Math.max(...overlappingEvents.map((e) => e.lane), 0) + 1
+      : 1;
+
   return (
     <TimelineContext.Provider
       value={{
@@ -38,6 +94,7 @@ export const Timeline = ({
         activeEventIndex,
         totalMonths,
         isScrollTriggerEnabled,
+        sizePerBlock,
       }}
     >
       <div
@@ -51,23 +108,23 @@ export const Timeline = ({
       >
         <div className="flex w-full flex-auto">
           <div className="w-[80px] flex-none ring-1 ring-slate-500" />
-          <div className="grid flex-auto grid-cols-1 grid-rows-1">
+          <div className="flex flex-auto relative">
             {/* Horizontal lines */}
             <div
               className={cn(
-                'col-start-1 col-end-2 row-start-1 grid divide-y divide-slate-500',
-                css`
-                  grid-template-rows: repeat(
-                    ${totalMonths},
-                    minmax(${sizePerBlock}, 1fr)
-                  );
-                `,
+                'absolute inset-0 flex flex-col divide-y divide-slate-500',
               )}
             >
-              <div className="row-end-1 h-14"></div>
+              <div className="h-14 flex-none"></div>
               {dates.map((date, index) => {
                 return (
-                  <div key={index}>
+                  <div
+                    key={index}
+                    className={css`
+                      min-height: ${sizePerBlock};
+                      flex: 1;
+                    `}
+                  >
                     <div
                       className={cn(
                         'sticky left-0 w-[80px] -ml-[80px] px-2',
@@ -88,18 +145,23 @@ export const Timeline = ({
             {/* Events */}
             <ol
               className={cn(
-                'col-start-1 col-end-2 row-start-1 grid grid-cols-1',
+                'relative flex flex-col w-full',
                 css`
-                  grid-template-rows:
-                    ${sizePerBlock} repeat(
-                      ${totalMonths},
-                      minmax(${sizePerBlock}, 1fr)
-                    )
-                    auto;
+                  padding-top: ${sizePerBlock};
                 `,
               )}
             >
-              {children}
+              {eventsWithLanes.map((event, index) => {
+                if (!event.child) return null;
+                return (
+                  <event.child.type
+                    key={event.child.key || index}
+                    {...event.child.props}
+                    lane={event.lane}
+                    maxLanes={event.hasOverlap ? maxLanes : 1}
+                  />
+                );
+              })}
             </ol>
           </div>
         </div>
