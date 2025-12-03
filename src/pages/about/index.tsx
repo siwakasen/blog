@@ -11,7 +11,6 @@ import { SectionTitle } from '@/components/Typography/SectionTitle';
 import { EmojiSpan } from '@/components/Typography/EmojiSpan';
 import { HistoryCalendar } from '@/components/HistoryCalendar';
 import { TechnologyAnchors } from '@/components/TechnologyAnchors';
-
 import { cn } from '@/utils/styles/classNames';
 
 export default function About() {
@@ -22,28 +21,22 @@ export default function About() {
         About me <EmojiSpan>👨‍💻</EmojiSpan>
       </PageTitle>
       <Paragraph>
-        I am a software engineer working on all-things-web. I am a curious
-        person and I love to learn how things work. It gives me a satisfying
-        feeling when I discover the reasons why some things are made the way
-        they are.
+        I am a tech enthusiast passionate about Linux and managing
+        infrastructure. I love homelabbing and self-hosting services to explore
+        how systems work hands-on. There's something incredibly satisfying about
+        building and maintaining your own infrastructure—it's where I get to
+        experiment, learn, and truly understand technology from the ground up.
       </Paragraph>
 
       <Paragraph>
-        Most of my experience are with React and front-end development. I work
-        on both infrastructure and product side of the frontend work. I like to
-        strengthen fundamentals and concepts to allow me to learn other things
-        easier, even when they may not be necessarily closely related to
-        front-end development. Feel free to{' '}
-        <ExternalLink href="https://twitter.com/jackyef__">
-          shoot me a DM/tweet on Twitter
-        </ExternalLink>{' '}
-        if you want to chat!
+        I also enjoy software engineering, building various projects to deliver
+        digital solutions. Whether it's crafting applications or configuring
+        servers, I'm driven by curiosity and the challenge of creating things
+        that work well. My diverse interests across development and
+        infrastructure give me a well-rounded perspective on how technology
+        comes together.
       </Paragraph>
 
-      <Paragraph>
-        I am currently based in Jakarta, Indonesia (🇮🇩) and working here as
-        well, but I am open to remote roles across the globe.
-      </Paragraph>
       <HorizontalDivider />
 
       <div className="my-12">
@@ -144,7 +137,7 @@ export default function About() {
       </div>
       <HorizontalDivider />
 
-      <SectionTitle>I speak too, sometimes 🎤</SectionTitle>
+      {/* <SectionTitle>I speak too, sometimes 🎤</SectionTitle>
       <Paragraph>
         During the course of my career, I have been fortunate enough to be given
         some opportunities to give talks about web development and its
@@ -165,7 +158,7 @@ export default function About() {
         more talks about the web. Who knows, I might add a <Code>/talk</Code>{' '}
         page on this site with the materials if it turns out to be a good idea!
       </Paragraph>
-      <HorizontalDivider />
+      <HorizontalDivider /> */}
     </>
   );
 }

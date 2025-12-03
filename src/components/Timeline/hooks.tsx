@@ -5,6 +5,7 @@ type TimelineContextAPI = {
   totalMonths: number;
   activeEventIndex?: number;
   isScrollTriggerEnabled?: boolean;
+  sizePerBlock: string;
 };
 
 export const TimelineContext = createContext<TimelineContextAPI>({
@@ -12,6 +13,7 @@ export const TimelineContext = createContext<TimelineContextAPI>({
   totalMonths: 0,
   activeEventIndex: undefined,
   isScrollTriggerEnabled: false,
+  sizePerBlock: '',
 });
 
 export const useTimelineContext = () => useContext(TimelineContext);

@@ -100,68 +100,63 @@ export const LandingHero = () => {
   `;
 
   return (
-    <>
-      <div
-        className={cn(
-          // container, //removing the card
-          'p-4',
-          'pb-8',
-          'sm:p-8',
-          'rounded-none',
-          'sm:rounded-3xl',
-          '-mx-4',
-          'sm:mx-0',
-          '-mt-12', // Cancels out the padding of <PageContainer />
-          'sm:mt-0',
-        )}
-      >
-        <h1 className="text-4xl md:text-6xl font-bold font-heading text-theme-heading transition-colors">
-          Hi, I am Siwakasen! 👋
-        </h1>
-        <Paragraph>
-          I am a just a guy who codes for fun, I love{' '}
-          <Mark>
-            balancing between infrastructure and product side of the frontend
-          </Mark>{' '}
-          work. I am currently based in Jakarta, Indonesia (🇮🇩).
-        </Paragraph>
+    <div
+      className={cn(
+        'p-4',
+        'pb-8',
+        'sm:p-8',
+        'rounded-none',
+        'sm:rounded-3xl',
+        '-mx-4',
+        'sm:mx-0',
+        '-mt-12', // Cancels out the padding of <PageContainer />
+        'sm:mt-0',
+      )}
+    >
+      <h1 className="text-4xl md:text-6xl font-bold font-heading text-theme-heading transition-colors">
+        Hi, I am Riksi! 👋
+      </h1>
+      <Paragraph>
+        I am a tech enthusiast who{' '}
+        <Mark>passionate with Linux and managing infrastructure.</Mark> I do
+        homelabbing and self-host many services to explore infrastructure
+        hands-on.
+      </Paragraph>
 
-        <Paragraph>
-          I am{' '}
-          <ExternalLink
-            href="https://github.com/siwakasen"
-            onClick={() => {
-              sendEventTracker({
-                name: 'click',
-                category: `${router.pathname} - hero`,
-                label: 'siwakasen on Twitter',
-              });
-            }}
-          >
-            siwakasen on Github
-          </ExternalLink>
-          . From time to time, I tweet about things I learned in my personal
-          journey, be it tech, career, or even just general things about life.
-          If you are on the platform, let&rsquo;s connect!
-        </Paragraph>
+      <Paragraph>
+        I also enjoy software engineering, building various projects to deliver
+        digital solutions. Check out{' '}
+        <ExternalLink
+          href="https://github.com/siwakasen"
+          onClick={() => {
+            sendEventTracker({
+              name: 'click',
+              category: `${router.pathname} - hero`,
+              label: 'siwakasen',
+            });
+          }}
+        >
+          my GitHub
+        </ExternalLink>{' '}
+        to see the projects.
+      </Paragraph>
 
-        <div className={cn('mt-8', 'sm:mt-12', 'flex')}>
-          <InternalLink
-            className={cn(baseCtaButton, ctaButton)}
-            href="/about"
-            onClick={() => {
-              sendEventTracker({
-                name: 'click',
-                category: `${router.pathname} - hero`,
-                label: 'More about me &arr;',
-              });
-            }}
-            isNotFancy
-          >
-            <span>More about me &rarr;</span>
-          </InternalLink>
-        </div>
+      <div className={cn('mt-8', 'sm:mt-12', 'flex')}>
+        <InternalLink
+          className={cn(baseCtaButton, ctaButton)}
+          href="/about"
+          onClick={() => {
+            sendEventTracker({
+              name: 'click',
+              category: `${router.pathname} - hero`,
+              label: 'More about me &arr;',
+            });
+          }}
+          isNotFancy
+        >
+          <span>More about me &rarr;</span>
+        </InternalLink>
       </div>
-    </>
+    </div>
   );
 };
