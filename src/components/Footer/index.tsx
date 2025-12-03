@@ -40,7 +40,7 @@ const FOOTER_LINKS: FooterSection[] = [
     sectionTitle: 'Navigation',
     links: [
       {
-        label: 'About',
+        label: 'About me',
         href: '/about',
       },
       {
