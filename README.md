@@ -1,5 +1,7 @@
 ## Hello, welcome to my Personal Blog👋
 
-This repo is under development
+Personal blog with [giscus](https://giscus.app/)
 
-template by [Jackyef](https://github.com/jackyef/my-site)
+This repo is under development.
+
+Template by [Jackyef](https://github.com/jackyef/my-site)
