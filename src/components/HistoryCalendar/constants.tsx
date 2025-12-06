@@ -6,6 +6,7 @@ import { ExternalLink } from '../Typography/ExternalLink';
 
 import { ExternalMedia, ExternalMediaList } from './components/ExternalMedia';
 import { UnorderedList } from './components/UnorderedList';
+import { Mark } from '../common/Mark';
 
 export const TIMELINE_START = new Date('2021-06-01');
 
@@ -24,16 +25,24 @@ export const timelineEvents = [
         details: (
           <>
             <p>
-              After having a taste of a Tech Lead role for almost 2 years, I am
-              now back to being an individual contributor (IC) again! It has
-              been a nice experience, but I missed being an IC, so I took the
-              opportunity to step down amidst a reorg.
+              <Mark>The first time was so nice, I had to do it twice.</Mark> Not
+              long after finishing my previous internship, I continued my next
+              internship at BCA.
             </p>
-
             <p>
-              One of the first projects I would be involved in will be a
-              cross-company design system update; hopefully I would learn much
-              and thus have things to share in coming days!
+              At here, I helped revamp a full-stack web application by migrating
+              it from legacy frameworks to Next.js, modernizing the tech stack
+              for better performance, maintainability, and long-term relevance.
+            </p>
+            <p>
+              I also learned to strengthened frontend web security by
+              integrating encryption directly into the frontend workflow,
+              ensuring sensitive data stayed protected during transmission.
+            </p>
+            <p>
+              Most of my experience here was in frontend web development,
+              because the bureau I was placed in focused on frontend
+              responsibilities.
             </p>
           </>
         ),
@@ -46,7 +55,24 @@ export const timelineEvents = [
     title: 'Web Developer',
     description: 'PT Winnicode Garuda Indonesia | Intern',
     variant: 'red',
-    details: <p></p>,
+    details: (
+      <>
+        <p>
+          This was my first internship, where I had the chance to develop a
+          recruitment app designed to streamline hiring and improve overall
+          management efficiency.
+        </p>
+        <p>
+          I built a RESTful API using Laravel with Inertia.js and PostgreSQL and
+          deployed the app with Docker containers to support scalability and
+          smooth deployment.
+        </p>
+        <p>
+          It was a great experience that allowed me to work through the entire
+          flow from development to production.
+        </p>
+      </>
+    ),
   },
   {
     from: new Date('2021-08-01'),
@@ -57,8 +83,8 @@ export const timelineEvents = [
     details: (
       <p>
         I learned a lot about technology, including how computers work,
-        different levels of programming, and learn using Linux. I also developed
-        my skills in building connections, expanding my networking, and
+        programming language, and learn building software. I also developed my
+        skills in building connections, expanding my networking, and
         strengthening relationships with many people.
       </p>
     ),

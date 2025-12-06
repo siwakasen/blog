@@ -12,6 +12,7 @@ import { EmojiSpan } from '@/components/Typography/EmojiSpan';
 import { HistoryCalendar } from '@/components/HistoryCalendar';
 import { TechnologyAnchors } from '@/components/TechnologyAnchors';
 import { cn } from '@/utils/styles/classNames';
+import { Mark } from '@/components/common/Mark';
 
 export default function About() {
   return (
@@ -43,45 +44,52 @@ export default function About() {
         <HistoryCalendar />
       </div>
 
-      <SectionTitle>Recent Projects 🧰</SectionTitle>
+      <SectionTitle>Recent Projects 📋</SectionTitle>
       <ProjectsList />
       <HorizontalDivider />
 
       <SectionTitle>Professional summary 💼</SectionTitle>
 
       <Paragraph>
-        I am currently working at{' '}
-        <ExternalLink href="https://www.stickermule.com">
-          Sticker Mule
+        I am currently finishing my internship and starting to look for a job,
+        especially in DevOps, Sysadmin, or Software Engineering. I play around
+        with <TechnologyAnchors /> on daily basis.
+      </Paragraph>
+      <Paragraph>
+        During my internships, I worked on modernizing a full-stack web
+        application by migrating it to{' '}
+        <ExternalLink href="https://nextjs.org/" shouldShowPreviewOnHover>
+          Next.js
+        </ExternalLink>{' '}
+        and improving frontend structure, performance, and reliability. I also
+        implemented encryption on the frontend to enhance data protection. In
+        another project, I built a recruitment platform using{' '}
+        <ExternalLink href="https://laravel.com/" shouldShowPreviewOnHover>
+          Laravel
+        </ExternalLink>{' '}
+        with{' '}
+        <ExternalLink href="https://inertiajs.com/" shouldShowPreviewOnHover>
+          Inertia.js
         </ExternalLink>
-        , tinkering around with web-related stuff! If you are looking for
-        specifics, I play around with <TechnologyAnchors /> on a daily basis;
-        striving to building awesome and accessible user experiences. I work on
-        some products and also write reusable components to be used across
-        different products. My work includes a mix of both frontend-infra and
-        frontend-product stuff.
-      </Paragraph>
-      <Paragraph>
-        From 2017 to the end of October 2020, I worked with JavaScript at{' '}
-        <ExternalLink href="https://www.tokopedia.com">Tokopedia</ExternalLink>{' '}
-        in the web platform team. Since July 2019, I have been part of the core
-        team, working on things that help other developers in their work such
-        as: development tools, CIs, and monitoring tools. I also tinkered around
-        with build processes and maintained Tokopedia&apos;s web platform
-        monorepo that housed 20+ services and 30+ reusable packages to which 80+
-        developers were contributing daily.
-      </Paragraph>
-      <Paragraph>
-        Before moving to the core team at Tokopedia, I was part of the mobile
-        web team. My day-to-day tasks included collaborating with backend
-        engineers, product owners and designers to ship features and products in
-        a timely manner.
+        ,{' '}
+        <ExternalLink
+          href="https://www.typescriptlang.org/"
+          shouldShowPreviewOnHover
+        >
+          TypeScript
+        </ExternalLink>
+        , and{' '}
+        <ExternalLink
+          href="https://www.postgresql.org/"
+          shouldShowPreviewOnHover
+        >
+          PostgreSQL
+        </ExternalLink>
+        .
       </Paragraph>
 
-      <HorizontalDivider />
-
+      {/* <HorizontalDivider />
       <SectionTitle>I write, kinda ✍️</SectionTitle>
-
       <div
         className={cn(
           'flex flex-col lg:flex-row justify-between gap-0 lg:gap-16',
@@ -109,9 +117,9 @@ export default function About() {
         <div className="flex-1 lg:max-w-[47%]">
           <MediumList />
         </div>
-      </div>
-      <HorizontalDivider />
+      </div> */}
 
+      <HorizontalDivider />
       <SectionTitle>I build stuff 🛠️</SectionTitle>
 
       <div
@@ -121,14 +129,18 @@ export default function About() {
       >
         <div className="flex-1 lg:max-w-[47%]">
           <Paragraph className="mb-0">
-            Sometimes, I feel motivated to build stuff. Some are just for fun
-            and learning, some are actually kind of helpful. A lot are abandoned
-            because I got sidetracked (don’t we all? 😅). I published some of
-            them in the open on{' '}
-            <ExternalLink href="https://github.com/siwakasen">
+            Currently, I’m still learning new things and trying to build stuff
+            that might be useful. I’ve published some of them on{' '}
+            <ExternalLink
+              shouldShowPreviewOnHover
+              href="https://github.com/siwakasen"
+            >
               GitHub
             </ExternalLink>
-            . I also contribute to open source libraries when I could.
+            . And I’m <Mark>open to contributing to interesting projects</Mark>.
+            You can reach me by{' '}
+            <ExternalLink href="mailto:siwakasen@gmail.com">email</ExternalLink>{' '}
+            anytime.
           </Paragraph>
         </div>
         <div className="flex-1 lg:max-w-[47%]">

@@ -7,39 +7,24 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: 'ProfileOverflow',
-    url: 'https://profile-overflow.vercel.app',
-    repo: 'https://github.com/jackyef/profile-overflow',
-    coverImage: 'https://profile-overflow.vercel.app/api/og/users/4662933',
-  },
-  {
-    name: 'Kotla',
-    url: 'https://kotla.vercel.app',
-    repo: 'https://github.com/jackyef/kotla',
-    coverImage: 'https://kotla.vercel.app/og.png',
-  },
-  {
-    name: 'Indonesian remote-friendly companies 🇮🇩',
-    url: 'https://id-wfa-companies.vercel.app',
-    repo: 'https://github.com/jackyef/id-wfa',
-    coverImage: 'https://id-wfa-companies.vercel.app/og.png',
-  },
-  {
-    name: 'Luck 🍀 or Hard Work 🛠️ ?',
-    url: 'https://luck-or-hardwork.vercel.app',
-    repo: 'https://github.com/jackyef/luck-or-hardwork',
-    coverImage: 'https://luck-or-hardwork.vercel.app/og-macos.png',
-  },
-  {
-    name: 'Ames Window illusion',
-    url: 'https://ames-window.vercel.app',
-    coverImage: 'https://ames-window.vercel.app/og.png',
-    repo: 'https://github.com/jackyef/ames-window',
-  },
-  {
-    name: 'DOTA Rewind 2020',
-    url: 'https://dotarewind.vercel.app',
+    name: 'React Recaptcha v3',
+    url: 'https://recaptcha.siwakasen.dev',
+    repo: 'https://github.com/siwakasen/react-recaptcha-v3',
     coverImage:
-      'https://dotarewind.vercel.app/assets/previews/static-preview.png',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RecaptchaLogo.svg/2560px-RecaptchaLogo.svg.png',
+  },
+  {
+    name: 'Tourism Microservices',
+    url: 'https://travel.vulpbox.com',
+    repo: 'https://github.com/siwakasen/tourism-microservices',
+    coverImage:
+      'https://travel.vulpbox.com/_next/image?url=%2Fimages%2Fhero4_img.jpg&w=1920&q=75',
+  },
+  {
+    name: 'Tekik Village',
+    url: 'https://tekik.vercel.app',
+    repo: 'https://github.com/siwakasen/tekik',
+    coverImage:
+      'https://tekik.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgambar.516c6652.jpg&w=3840&q=75',
   },
 ];
