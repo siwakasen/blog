@@ -1,7 +1,22 @@
 [
   {
-    "title": "Test Blog",
-    "description": "testing github discussions",
-    "link": "/posts/test-blog"
+    "title": "Database Clustering with Master-Slave Database Architecture",
+    "description": "setup many vm for server",
+    "link": "/posts/cnpg-master-slave-database-clustering"
+  },
+  {
+    "title": "Setup HA K3s Cluster With Tailscale and Cloudflare Tunnel",
+    "description": "setup many vm for server",
+    "link": "/posts/k3s-tailscale-cloudflare-tunnel"
+  },
+  {
+    "title": "Linux Hypervisor Setup",
+    "description": "setup many vm for server",
+    "link": "/posts/linux-hypervisor-setup"
+  },
+  {
+    "title": "Microservices From Docker to Kubernetes Cluster",
+    "description": "setup many vm for server",
+    "link": "/posts/microservices-from-docker-to-kubernetes"
   }
 ]

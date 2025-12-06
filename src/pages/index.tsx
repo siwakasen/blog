@@ -19,7 +19,7 @@ export default function Home({ posts }: Readonly<Props>) {
       <section aria-label="hero section" className=" min-w-screen">
         <div className="absolute left-1/2 -translate-x-1/2 top-20 w-screen max-w-full">
           <img
-            alt="culture background by alif.web.id"
+            alt="culture background by alif"
             loading="lazy"
             decoding="async"
             data-nimg="fill"

@@ -125,20 +125,7 @@ export const LandingHero = () => {
 
       <Paragraph>
         I also enjoy software engineering, building various projects to deliver
-        digital solutions. Check out{' '}
-        <ExternalLink
-          href="https://github.com/siwakasen"
-          onClick={() => {
-            sendEventTracker({
-              name: 'click',
-              category: `${router.pathname} - hero`,
-              label: 'siwakasen',
-            });
-          }}
-        >
-          my GitHub
-        </ExternalLink>{' '}
-        to see the projects.
+        digital solutions.
       </Paragraph>
 
       <div className={cn('mt-8', 'sm:mt-12', 'flex')}>

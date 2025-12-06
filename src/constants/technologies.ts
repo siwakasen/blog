@@ -1,4 +1,14 @@
+import { resolveHref } from 'next/dist/shared/lib/router/router';
+
 export const TECHNOLOGIES = [
+  {
+    name: 'TypeScript',
+    href: 'https://www.typescriptlang.org/',
+  },
+  {
+    name: 'gRPC',
+    href: 'https://grpc.io/',
+  },
   {
     name: 'React',
     href: 'https://reactjs.org/',
@@ -8,23 +18,19 @@ export const TECHNOLOGIES = [
     href: 'https://nextjs.org/',
   },
   {
-    name: 'TypeScript',
-    href: 'https://www.typescriptlang.org/',
+    name: 'Nestjs',
+    href: 'https://nestjs.com/',
   },
   {
-    name: 'Node',
-    href: 'https://nodejs.org/en/',
-  },
-  {
-    name: 'GraphQL',
-    href: 'https://graphql.org/',
-  },
-  {
-    name: 'Apollo',
-    href: 'https://www.apollographql.com/docs/',
+    name: 'GNU/Linux',
+    href: 'https://www.gnu.org/gnu/linux-and-gnu.html',
   },
   {
     name: 'Docker',
     href: 'https://www.docker.com/',
+  },
+  {
+    name: 'Kubernetes',
+    href: 'https://kubernetes.io/',
   },
 ];
