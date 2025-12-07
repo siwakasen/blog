@@ -107,9 +107,7 @@ export const HistoryCalendar = () => {
           )}
         >
           <AsideContainer>
-            {!activeEvent ? (
-              <AsideEmptyState />
-            ) : (
+            {activeEvent ? (
               <>
                 <AsideHeading
                   event={activeEvent}
@@ -163,6 +161,8 @@ export const HistoryCalendar = () => {
                   </motion.div>
                 </AnimatePresence>
               </>
+            ) : (
+              <AsideEmptyState />
             )}
           </AsideContainer>
         </div>

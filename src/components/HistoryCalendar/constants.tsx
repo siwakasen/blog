@@ -1,11 +1,6 @@
 import { TODAY } from '@/lib/datetime';
 
 import type { BaseEvent } from '../Timeline/TimelineEvent';
-import { TechnologyAnchors } from '../TechnologyAnchors';
-import { ExternalLink } from '../Typography/ExternalLink';
-
-import { ExternalMedia, ExternalMediaList } from './components/ExternalMedia';
-import { UnorderedList } from './components/UnorderedList';
 import { Mark } from '../common/Mark';
 
 export const TIMELINE_START = new Date('2021-06-01');
