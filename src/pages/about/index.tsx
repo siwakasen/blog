@@ -2,8 +2,6 @@ import ProjectsList from '@/components/Projects/List';
 import { PageMetaTags } from '@/components/Seo/PageMetaTags';
 import { HorizontalDivider } from '@/components/Divider';
 import GitHubList from '@/components/GitHub/List';
-import MediumList from '@/components/Medium/List';
-import { Code } from '@/components/Typography/Code';
 import { ExternalLink } from '@/components/Typography/ExternalLink';
 import { PageTitle } from '@/components/Typography/PageTitle';
 import { Paragraph } from '@/components/Typography/Paragraph';
@@ -11,8 +9,8 @@ import { SectionTitle } from '@/components/Typography/SectionTitle';
 import { EmojiSpan } from '@/components/Typography/EmojiSpan';
 import { HistoryCalendar } from '@/components/HistoryCalendar';
 import { TechnologyAnchors } from '@/components/TechnologyAnchors';
-import { cn } from '@/utils/styles/classNames';
 import { Mark } from '@/components/common/Mark';
+import { cn } from '@/utils/styles/classNames';
 
 export default function About() {
   return (
@@ -24,15 +22,15 @@ export default function About() {
       <Paragraph>
         I am a tech enthusiast passionate about Linux and managing
         infrastructure. I love homelabbing and self-hosting services to explore
-        how systems work hands-on. There's something incredibly satisfying about
-        building and maintaining your own infrastructure—it's where I get to
+        how systems work hands-on. Theres something incredibly satisfying about
+        building and maintaining your own infrastructure—it’s where I get to
         experiment, learn, and truly understand technology from the ground up.
       </Paragraph>
 
       <Paragraph>
         I also enjoy software engineering, building various projects to deliver
-        digital solutions. Whether it's crafting applications or configuring
-        servers, I'm driven by curiosity and the challenge of creating things
+        digital solutions. Whether it’s crafting applications or configuring
+        servers, I’m driven by curiosity and the challenge of creating things
         that work well. My diverse interests across development and
         infrastructure give me a well-rounded perspective on how technology
         comes together.

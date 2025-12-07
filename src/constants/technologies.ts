@@ -1,5 +1,3 @@
-import { resolveHref } from 'next/dist/shared/lib/router/router';
-
 export const TECHNOLOGIES = [
   {
     name: 'TypeScript',
