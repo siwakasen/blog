@@ -22,7 +22,7 @@ jobs:
             echo "COMMIT_MESSAGE<<EOF"
             echo "$COMMIT_MESSAGE"
             echo "EOF"
-          } >> "$GITHUB_ENV"V
+          } >> "$GITHUB_ENV"
 
       - name: Check for skip keywords
         id: skip-check

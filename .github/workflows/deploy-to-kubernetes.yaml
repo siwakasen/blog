@@ -13,6 +13,6 @@ jobs:
 
       - uses: actions-hub/kubectl@master
         with:
-          args: rollout deployments {{ vars.DEPLOYMENT_NAME }} -n {{ vars.DEPLOYMENT_NAMESPACES }}
+          args: rollout deployments restart {{ vars.DEPLOYMENT_NAME }} -n {{ vars.DEPLOYMENT_NAMESPACES }}
 
       
