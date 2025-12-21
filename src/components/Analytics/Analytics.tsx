@@ -1,11 +1,9 @@
 import Script from 'next/script';
-;
 import { isProd } from '@/utils/constants';
 
 // This component should be included in your _document.tsx inside the <Head> section
 export const GTMHead = () => {
   if (!isProd) return null;
-  
   return (
     <Script id="gtm-script" strategy="afterInteractive">
       {`
@@ -23,7 +21,6 @@ export const GTMHead = () => {
 // It will render the noscript iframe after the opening <body> tag
 export const GTMBody = () => {
   if (!isProd) return null;
-  
   return (
     <noscript>
       <iframe

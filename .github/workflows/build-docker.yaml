@@ -46,7 +46,7 @@ jobs:
           env.skip == 'false'
         run: |
           IMAGE=${{ secrets.REGISTRY_URL }}/${{ vars.IMAGE_NAME }}
-          docker build --progress=plain \
+          docker build \
             --build-arg NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }} \
             -f Dockerfile -t $IMAGE:latest -t $IMAGE:sha-${SHORT_SHA} .
           docker push $IMAGE:latest
