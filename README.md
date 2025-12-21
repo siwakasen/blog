@@ -2,6 +2,6 @@
 
 Personal blog with [giscus](https://giscus.app/)
 
-This repo is under development.
-
-Template by [Jackyef](https://github.com/jackyef/my-site)
+On this repo I also cover pipeline to build Docker Image of the project, and
+also pipeline for deployment into the kubernetes,but you need to deploy your app
+on kubernetes cluster first
