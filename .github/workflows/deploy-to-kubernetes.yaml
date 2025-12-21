@@ -10,9 +10,11 @@ jobs:
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-
       - uses: actions-hub/kubectl@master
         with:
-          args: rollout deployments restart {{ vars.DEPLOYMENT_NAME }} -n {{ vars.DEPLOYMENT_NAMESPACES }}
+          args: rollout restart deployment {{ vars.DEPLOYMENT_NAME }} -n {{ vars.DEPLOYMENT_NAMESPACES }}
+      - uses: actions-hub/kubectl@master
+        with:
+          args: rollout status deployment {{ vars.DEPLOYMENT_NAME }} -n {{ vars.DEPLOYMENT_NAMESPACES }}
 
       
