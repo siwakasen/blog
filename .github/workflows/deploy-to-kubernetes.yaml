@@ -7,15 +7,12 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@master
-      - name: deploy to Kubernetes
-        uses: steebchen/kubectl@v2.0.0
-        with: # defaults to latest kubectl binary version
-          config: ${{ secrets.KUBE_CONFIG }}
-          command: rollout restart deployment/${{ vars.DEPLOYMENT_NAME }} -n ${{ vars.DEPLOYMENT_NAMESPACES }}
-      - name: verify deployment
-        uses: steebchen/kubectl@v2.0.0
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+
+      - uses: actions-hub/kubectl@master
         with:
-          config: ${{ secrets.KUBE_CONFIG }}
-          version: v1.21.0 # specify kubectl binary version explicitly
-          binaries-url: "https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl" # specify the download url explicitly
-          command: rollout status deployment/${{ vars.DEPLOYMENT_NAME }} -n ${{ vars.DEPLOYMENT_NAMESPACES }}
+          args: rollout deployments {{ vars.DEPLOYMENT_NAME }} -n {{ vars.DEPLOYMENT_NAMESPACES }}
+
+      
