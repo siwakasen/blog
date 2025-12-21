@@ -1,8 +1,10 @@
 ---
-title: Linux Hypervisor Setup
+title: Linux Hypervisor Setup (libvirt/qemu/kvm)
 description:
-  setup many vm for server
-date: '2025-12-01T09:05:10.253Z'
+  One of the things I love most about Linux is how it allows me to combine different tools to create powerful setups. 
+  One example is provisioning VMs. With Linux, you can turn an old or unused laptop or computer into a hypervisor 
+  without spending money on cloud services.
+date: '2025-12-21T08:49:06.000Z'
 ogImage:
   title: Linux Hypervisor Setup
 readingTime: 15 min read
@@ -11,11 +13,283 @@ tags: ['tech','linux','sysadmin','server','homelab']
 
 {/* !start-of-preview */}
 
-Making VM for my server
+One of the things I love most about Linux is how it allows me to combine different tools to create powerful setups. 
+One example is provisioning VMs. With Linux, you can turn an old or unused laptop or computer into a hypervisor 
+without spending money on cloud services.
 
 {/* !end-of-preview */}
 
-Making VM for my server
 
 
+> TL;DR:
+>
+> Hypervisor is a piece of software that creates and manages virtual machines on a physical host computer.
+> This layer allows one host operating system to operate and manage multiple guest operating systems 
+> and applications using its physical hardware. 
 
+## Tools
+There are plenty of virtualization tools out there, but 
+I stick to a stack that’s simple and reliable enough to get my work done.
+
+  ### Key System Tools
+  These tools enable virtualization
+  - **[KVM](https://www.linux-kvm.org/page/Main_Page)**
+    - Kernel-based virtual machine
+    - Kernel module that handles CPU and memory communication
+
+  - **[QEMU](https://www.qemu.org/)**
+    - Quick EMUlator
+    - Emulates various hardware resources including disk, network, and USB devices.
+      While it can emulate a CPU, when used with KVM (as qemu/kvm), it offloads CPU emulation to the KVM module (which provides hardware-accelerated virtualization).
+
+  - **[libvirt](https://libvirt.org/)**
+    - Exposes a consistent API atop many virtualization technologies. 
+      APIs are consumed by client tools for provisioning and managing VMs.
+
+  ### Client Tools
+  These tools provide user and service interfaces for interaction.
+
+  - **[virsh](https://libvirt.org/manpages/virsh.html)**
+    - Command-line tools for communicating with libvirt
+  - **[virt-manager](https://virt-manager.org/)**
+    - GUI to manage qemu/kvm.
+  - **[virt-install](https://linux.die.net/man/1/virt-install)**
+    - Helper tools for creating new VM guests.
+    - Part of the virt-manager project.
+
+  ### Ancillary System Tools
+  These tools support the system tools listed above.
+    - dnsmasq: A lightweight DNS/DHCP server primarily used for allocating IPs to VMs.
+    - bridge-utils: Used to create bridge interfaces easily.
+
+  <Panel type="warning">
+  ⚠️ Please note that package names and availability may vary depending on your Linux distribution. Always refer to your distribution's documentation for specific instructions. This guide was created using Ubuntu 24.04 LTS.
+  </Panel>
+
+  Although the interaction between these tools may seem complex at first, the overall architecture is actually quite straightforward. In practice, you'll primarily work with just a couple of these tools for most operations. 
+  Here's a high-level overview of how these tools interact with each other:
+  <div className="relative flex place-content-center h-80 not-prose">
+    <Image
+      className="object-contain"
+      fill
+      src={'/assets/blog/linux-hypervisor-setup/kvm-tools.png'}
+    />
+  </div>
+
+  
+## Permissions
+Several configuration steps are required so we can interact with qemu:///system. 
+This allows virtual machines to run as root, which is usually what we want, and it is also 
+the default mode used by virt-manager. A blog post by [Colin Robinson explains the differences 
+between these modes in more detail](https://blog.wikichoon.com/2016/01/qemusystem-vs-qemusession.html).
+
+virsh, will connects to qemu:///session by default. This means that CLI commands run without 
+sudo operate under a different user context. To make sure all client tools use qemu:///system 
+by default, you need to add a specific configuration to your user .config directory.
+
+```bash
+sudo cp -rv /etc/libvirt/libvirt.conf ~/.config/libvirt/ &&\
+sudo chown ${YOURUSER}:${YOURGROUP} ~/.config/libvirt/libvirt.conf
+```
+## Configuring libvirtd and Preparing ISOs
+  ### Starting the libvirtd Service
+  To begin interacting with qemu/kvm you need to start the libvirt daemon.
+  ```bash
+  sudo systemctl start libvirtd
+  ```
+  Enable libvirtd to start automatically at boot
+  ```bash
+  sudo systemctl enable libvirtd
+  ```
+  libvirt keeps its files at <code>/var/lib/libvirt/</code>. There are multiple directories within.
+  ```bash
+  drwx--x--x  2 root         root 4096 Sep 17 07:20 boot
+  drwxr-xr-x  2 root         root 4096 Dec 14 20:03 dnsmasq
+  drwx--x--x  2 root         root 4096 Dec  8 15:36 images
+  drwxr-xr-x  2 root         root 4096 Dec  8 15:00 isos
+  drwxr-x--- 12 libvirt-qemu kvm  4096 Dec 14 17:44 qemu
+  drwx------  2 root         root 4096 Sep 17 07:20 sanlock
+  ```
+  The <code>images</code> directory is the default location a VM's disk image will be stored (e.g. [qcow2](https://en.wikipedia.org/wiki/Qcow)).
+  ### Preparing ISOs
+  You can see above that there is an <code>isos</code> directory inside /var/lib/libvirt/. 
+  It does not belong there by default. I created it myself to store ISO files and make them easier to manage for virtualization.
+  ```bash
+  mkdir /var/lib/libvirt/isos
+  ```
+  Before creating virtual machines, let's download the necessary ISO files. 
+  For this guide, we'll be using Ubuntu and Rocky Linux (RHEL-based) as our guest operating systems,
+  as these are among the most widely used Linux distributions for server environments.
+  
+  - [Ubuntu](https://ubuntu.com/download/server)
+    ```bash
+    sudo wget -P /var/lib/libvirt/isos \
+    https://releases.ubuntu.com/24.04.3/ubuntu-24.04.3-live-server-amd64.iso
+    ```
+  - [Rocky Linux](https://rockylinux.org/download)
+    ```bash
+    sudo wget -P /var/lib/libvirt/isos \
+    https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.1-x86_64-boot.iso
+    ```
+
+## Creating VMs
+Let's dive into the main focus of this article. I'll be creating three virtual machines: one running Ubuntu and two running Rocky Linux. This configuration meets the minimum requirements for a basic Kubernetes cluster setup. I'll cover the Kubernetes configuration in detail in a follow-up article.
+
+Since my host machine doesn't have a desktop environment, I won't be using the virt-manager 
+GUI in this article. Instead, I'll use the command line to handle the entire VM installation process.
+```bash
+virt-install \
+  --name node-1 \
+  --ram 2048 \
+  --vcpus 2 \
+  --disk path=/var/lib/libvirt/images/node-1.qcow2,size=60,format=qcow2,bus=virtio \
+  --os-variant ubuntu22.04 \
+  --cdrom /var/lib/libvirt/isos/ubuntu-22.04.5-live-server-amd64.iso \
+  --graphics vnc \
+  --network network=default 
+```
+
+```bash
+virt-install \
+  --name node-2 \
+  --ram 2048 \
+  --vcpus 2 \  
+  --disk path=/var/lib/libvirt/images/node-2.qcow2,size=60,format=qcow2,bus=virtio \
+  --os-variant rocky-unknown \
+  --cdrom /var/lib/libvirt/isos/rocky10.1.iso \
+  --graphics vnc \  
+  --network network=default
+```
+Let me explain the key parameters in the command above that require attention:
+- --ram, is how much memory you allocated in (MiB)
+- --vcpus, is how much the cpu core 
+- --disk, it has path which is path of disk image and size is virtual disk size in (GiB)
+- --cdrom, is the ISO u want to use, 
+- --os-variant, you can search the os variant with this command 
+  ```bash
+  virt-install --osinfo list
+  ```
+- `--graphics`: Set to VNC to access the VM's graphical console during initial installation.
+
+  While I won't cover the complete Linux installation process here, I use [TigerVNC](https://tigervnc.org/) on my local machine to access the VM's graphical console. This involves setting up SSH port forwarding to the host machine first, then connecting to the guest VM using TigerVNC.
+  ```bash
+  ssh -L 5900:localhost:5900 -L 5902:localhost:5902 [host-user:host-ip]
+  ```
+  And, on the TigerVNC:
+
+  <div className="relative flex place-content-center h-40 not-prose">
+    <Image
+      className="object-contain"
+      fill
+      src={'/assets/blog/linux-hypervisor-setup/tigervnc.png'}
+      alt="TigerVNC"
+    />
+  </div>
+
+After installation, you can view your VMs using virsh
+```bash
+virsh list --all
+```
+
+  <div className="relative flex place-content-center h-40 not-prose">
+    <Image
+      className="object-contain"
+      fill
+      src={'/assets/blog/linux-hypervisor-setup/vm-list.png'}
+      alt="vm list"
+    />
+  </div>
+
+
+## Managing VMs 
+In the future, you may need to add more ram or storage to your VMs as your services' resource requirements grow.
+Here's how to customize your VM's ram and storage configuration.
+
+  ### Add more storage 
+  First you need to shutdown your VM that you want to add more storage.
+  ```bash
+  virsh shutdown node-1
+  ```
+  Make sure the VM is shutdown before adding more storage.
+
+
+  Then, you can add more storage to your VM.
+  ```bash
+  qemu-img resize /var/lib/libvirt/images/node-1.qcow2 +10G
+  ```
+  After that, you can start your VM again.
+  ```bash
+  virsh start node-1
+  ```
+  Then inside the VM, you can check disk first.
+  ```bash
+  lsblk
+  ```
+  You’ll see something like this:
+  ```bash
+  vda                       252:0    0   70G  0 disk 
+  ├─vda1                    252:1    0    1M  0 part 
+  ├─vda2                    252:2    0    2G  0 part /boot
+  └─vda3                    252:3    0   58G  0 part 
+    └─ubuntu--vg-ubuntu--lv 253:0    0   58G  0 lvm /
+  ```
+  You can see that while the disk now shows 70GB capacity, the root partition is only using 58GB.
+  Let's expand the partition to utilize the remaining space.
+  ```bash
+  sudo growpart /dev/vda 3
+  sudo pvresize /dev/vda3
+  sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+  sudo resize2fs /dev/ubuntu-vg/ubuntu-lv
+  ```
+  Now, if we check the disk again, the root partition has 68G:
+  ```bash
+  lsblk
+  ```
+  ```
+  vda                       252:0    0   70G  0 disk 
+  ├─vda1                    252:1    0    1M  0 part 
+  ├─vda2                    252:2    0    2G  0 part /boot
+  └─vda3                    252:3    0   68G  0 part 
+    └─ubuntu--vg-ubuntu--lv 253:0    0   68G  0 lvm  /
+```
+  ### Adding More RAM
+  Increasing a VM's memory is simpler than expanding storage. Let's add more RAM to node-2.
+  First, let's check the current memory allocation using:
+  ```bash
+  virsh dominfo node-2
+  ```
+  First, we need to power off the VM:
+  ```bash
+  virsh shutdown node-2
+  ```
+  Next, let's increase the memory allocation.
+  ```bash
+  virsh setmaxmem node-2 4G --config
+  virsh setmem node-2 4G --config
+  ```
+  Finally, let's start the VM again.
+  ```bash
+  virsh start node-2
+  ```
+  In the VM, you can check the memory.
+  ```bash
+  free -h
+  ```
+## Wrapping Up
+
+This guide has covered the essential steps to set up and manage virtual machines using
+libvirt, QEMU, and KVM on a Linux hypervisor.
+While we've focused on the core functionality for basic VM provisioning and management,
+libvirt offers many more advanced features worth exploring, such as:
+
+- Network configuration and virtual networking
+- Snapshots and VM state management
+- Live migration between hosts
+- Advanced storage management with storage pools
+- Fine-grained resource allocation and control
+
+For those looking to expand their setup, consider exploring these topics to build a more 
+robust virtualization environment. The configuration we've set up provides a solid foundation 
+for running a small-scale private cloud or development environment.
+
+Happy virtualizing! 😃
