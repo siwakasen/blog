@@ -14,5 +14,8 @@ jobs:
       - uses: actions-hub/kubectl@master
         with:
           args: rollout deployments restart {{ vars.DEPLOYMENT_NAME }} -n {{ vars.DEPLOYMENT_NAMESPACES }}
+      - uses: actions-hub/kubectl@master
+        with:
+          args: rollout status deployment/{{ vars.DEPLOYMENT_NAME }} -n {{ vars.DEPLOYMENT_NAMESPACES }}
 
       
