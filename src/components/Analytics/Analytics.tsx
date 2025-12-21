@@ -1,5 +1,4 @@
 import Script from 'next/script';
-;
 import { isProd } from '@/utils/constants';
 
 // This component should be included in your _document.tsx inside the <Head> section
