@@ -1,7 +1,6 @@
 import { TODAY } from '@/lib/datetime';
 
 import type { BaseEvent } from '../Timeline/TimelineEvent';
-import { Mark } from '../common/Mark';
 
 export const TIMELINE_START = new Date('2021-06-01');
 
