@@ -15,6 +15,7 @@ const conf = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  output: 'standalone', 
   webpack: (config, options) => {
     const { dev, isServer } = options;
 

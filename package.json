@@ -57,7 +57,6 @@
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.6.1",
-    "@codesandbox/sandpack-react": "^2.6.3",
     "@feedback-fish/react": "^1.2.1",
     "@giscus/react": "^3.1.0",
     "@headlessui/react": "^1.7.15",
@@ -66,7 +65,6 @@
     "@next/font": "^13.0.1",
     "@radix-ui/react-dialog": "1.0.5",
     "@radix-ui/react-tooltip": "1.0.7",
-    "@vercel/analytics": "^1.4.1",
     "@vercel/og": "0.0.22",
     "autotrack": "^2.4.1",
     "canvas-confetti": "^1.5.1",
@@ -88,10 +86,16 @@
     "react-flip-toolkit": "^7.0.13",
     "react-hot-toast": "^2.1.1",
     "react-query": "^3.33.3",
+    "sharp": "^0.34.5",
     "tailwind-merge": "^2.2.1",
     "tinytime": "^0.2.6"
   },
   "dependenciesComments": {
     "goober": "goober is used by react-hot-toast and in parts of the web where using Tailwind require too much customization"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
   }
 }

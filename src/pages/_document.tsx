@@ -7,7 +7,6 @@ import Document, {
   DocumentProps,
 } from 'next/document';
 import { extractCss } from 'goober';
-import { getSandpackCssText } from '@codesandbox/sandpack-react';
 
 import { fontsClasses } from '@/utils/fonts';
 
@@ -26,11 +25,6 @@ export default class MyDocument extends Document<Props> {
     return (
       <Html lang="en" className={fontsClasses}>
         <Head>
-          <style
-            dangerouslySetInnerHTML={{ __html: getSandpackCssText() }}
-            id="sandpack"
-            key="sandpack-css"
-          />
           <style
             id={'_goober'}
             // And defined it in here

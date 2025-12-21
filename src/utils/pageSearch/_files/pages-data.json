@@ -1,22 +1,7 @@
 [
   {
-    "title": "Database Clustering with Master-Slave Database Architecture",
-    "description": "setup many vm for server",
-    "link": "/posts/cnpg-master-slave-database-clustering"
-  },
-  {
-    "title": "Setup HA K3s Cluster With Tailscale and Cloudflare Tunnel",
-    "description": "setup many vm for server",
-    "link": "/posts/k3s-tailscale-cloudflare-tunnel"
-  },
-  {
-    "title": "Linux Hypervisor Setup",
-    "description": "setup many vm for server",
+    "title": "Linux Hypervisor Setup (libvirt/qemu/kvm)",
+    "description": "One of the things I love most about Linux is how it allows me to combine different tools to create powerful setups.  One example is provisioning VMs. With Linux, you can turn an old or unused laptop or computer into a hypervisor  without spending money on cloud services.",
     "link": "/posts/linux-hypervisor-setup"
-  },
-  {
-    "title": "Microservices From Docker to Kubernetes Cluster",
-    "description": "setup many vm for server",
-    "link": "/posts/microservices-from-docker-to-kubernetes"
   }
 ]

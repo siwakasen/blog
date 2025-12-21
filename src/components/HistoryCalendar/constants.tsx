@@ -1,7 +1,6 @@
 import { TODAY } from '@/lib/datetime';
 
 import type { BaseEvent } from '../Timeline/TimelineEvent';
-import { Mark } from '../common/Mark';
 
 export const TIMELINE_START = new Date('2021-06-01');
 
@@ -20,24 +19,17 @@ export const timelineEvents = [
         details: (
           <>
             <p>
-              <Mark>The first time was so nice, I had to do it twice.</Mark> Not
-              long after finishing my previous internship, I continued my next
-              internship at BCA.
-            </p>
-            <p>
-              At here, I helped revamp a full-stack web application by migrating
-              it from legacy frameworks to Next.js, modernizing the tech stack
-              for better performance, maintainability, and long-term relevance.
+              {' '}
+              Not long after finishing my previous internship, I continued my
+              next internship at BCA. At here, I helped revamp a full-stack web
+              application by migrating it from legacy frameworks to Next.js,
+              modernizing the tech stack for better performance,
+              maintainability, and long-term relevance.
             </p>
             <p>
               I also learned to strengthened frontend web security by
               integrating encryption directly into the frontend workflow,
               ensuring sensitive data stayed protected during transmission.
-            </p>
-            <p>
-              Most of my experience here was in frontend web development,
-              because the bureau I was placed in focused on frontend
-              responsibilities.
             </p>
           </>
         ),
