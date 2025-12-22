@@ -5,8 +5,8 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package.json pnpm-lock.yaml* ./
-RUN pnpm install --frozen-lockfile
+COPY package.json ./
+RUN pnpm install 
 
 # Download fonts
 FROM base AS fonts
