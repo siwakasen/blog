@@ -1,5 +1,3 @@
-# syntax=docker.io/docker/dockerfile:1
-
 FROM node:20-alpine AS base
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
@@ -29,8 +27,9 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
 # Preserve your existing ARG and ENV
-ARG NEXT_PUBLIC_URL
-ENV NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL}
+ARG NEXT_PUBLIC_URL_ARG
+ENV NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL_ARG}
+ENV NEXT_SHARP_PATH="/app/node_modules/sharp"
 
 # Update font references to use local files
 RUN sed -i 's|https://fonts.gstatic.com/s/lora/|/fonts/|g' src/utils/fonts/index.ts
@@ -44,6 +43,11 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+
+# Preserve your existing ARG and ENV
+ARG NEXT_PUBLIC_URL
+ENV NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL}
+ENV NEXT_SHARP_PATH="/app/node_modules/sharp"
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
