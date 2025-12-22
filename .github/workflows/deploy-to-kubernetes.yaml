@@ -10,7 +10,7 @@ jobs:
         name: 🔽 Checkout
 
       - uses: actions-hub/kubectl@master
-        name: 🛠️ Download Kubectl
+        name: 🛠️ Prepare Kubectl
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       - uses: actions-hub/kubectl@master
