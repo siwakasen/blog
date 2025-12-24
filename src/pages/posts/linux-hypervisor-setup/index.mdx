@@ -63,7 +63,7 @@ I stick to a stack that’s simple and reliable enough to get my work done.
     - bridge-utils: Used to create bridge interfaces easily.
 
   <Panel type="warning">
-  ⚠️ Please note that package names and availability may vary depending on your Linux distribution. Always refer to your distribution's documentation for specific instructions. This guide was created using Ubuntu 24.04 LTS.
+  ⚠️ Please note that package names and availability may vary depending on your Linux distribution. Always refer to your distribution's documentation for specific instructions. This guide was created using Ubuntu 24.04 LTS for the host machine.
   </Panel>
 
   Although the interaction between these tools may seem complex at first, the overall architecture is actually quite straightforward. In practice, you'll primarily work with just a couple of these tools for most operations. 
@@ -134,14 +134,14 @@ sudo chown ${YOURUSER}:${YOURGROUP} ~/.config/libvirt/libvirt.conf
     ```
 
 ## Creating VMs
-Let's dive into the main focus of this article. I'll be creating three virtual machines: one running Ubuntu and two running Rocky Linux. This configuration meets the minimum requirements for a basic Kubernetes cluster setup. I'll cover the Kubernetes configuration in detail in a follow-up article.
+Let's dive into the main focus of this article. I'll be creating three virtual machines: two VMs running Ubuntu and one VM running Rocky Linux. This configuration meets the minimum requirements for a basic Kubernetes cluster setup. I'll cover the Kubernetes configuration in detail in a follow-up article.
 
 Since my host machine doesn't have a desktop environment, I won't be using the virt-manager 
 GUI in this article. Instead, I'll use the command line to handle the entire VM installation process.
 ```bash
 virt-install \
   --name node-1 \
-  --ram 2048 \
+  --ram 3072 \
   --vcpus 2 \
   --disk path=/var/lib/libvirt/images/node-1.qcow2,size=60,format=qcow2,bus=virtio \
   --os-variant ubuntu22.04 \
@@ -152,14 +152,14 @@ virt-install \
 
 ```bash
 virt-install \
-  --name node-2 \
-  --ram 2048 \
-  --vcpus 2 \  
-  --disk path=/var/lib/libvirt/images/node-2.qcow2,size=60,format=qcow2,bus=virtio \
+  --name node-3 \
+  --ram 3072 \
+  --vcpus 2 \
+  --disk path=/var/lib/libvirt/images/node-3.qcow2,size=60,format=qcow2,bus=virtio \
   --os-variant rocky-unknown \
   --cdrom /var/lib/libvirt/isos/rocky10.1.iso \
-  --graphics vnc \  
-  --network network=default
+  --graphics vnc \
+  --network network=default 
 ```
 Let me explain the key parameters in the command above that require attention:
 - --ram, is how much memory you allocated in (MiB)
@@ -172,9 +172,10 @@ Let me explain the key parameters in the command above that require attention:
   ```
 - `--graphics`: Set to VNC to access the VM's graphical console during initial installation.
 
-  While I won't cover the complete Linux installation process here, I use [TigerVNC](https://tigervnc.org/) on my local machine to access the VM's graphical console. This involves setting up SSH port forwarding to the host machine first, then connecting to the guest VM using TigerVNC.
+  While I won't cover the complete Linux installation process here, I use [TigerVNC](https://tigervnc.org/) on my local machine to access the VM's graphical console. 
+  This involves setting up SSH port forwarding to the host machine first, then connecting to the guest VM using TigerVNC.
   ```bash
-  ssh -L 5900:localhost:5900 -L 5902:localhost:5902 [host-user:host-ip]
+  ssh -L 5900:localhost:5900 -L 5901:localhost:5901 [host-user:host-ip]
   ```
   And, on the TigerVNC:
 
