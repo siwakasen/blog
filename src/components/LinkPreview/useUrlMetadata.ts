@@ -9,7 +9,6 @@ type UrlMetadata = {
   provider: string;
   author: string;
   published: string;
-  twitter: string;
   image: string;
   icon: string;
 };

@@ -4,7 +4,6 @@ import { useContext, useEffect, useRef } from 'react';
 import { ThemeContext } from '@/components/Theme/ThemeProvider';
 
 import { cn } from '@/utils/styles/classNames';
-import { publicUrl } from '@/utils/constants';
 
 import { HighlightedQuery } from './HighlightedQuery';
 
@@ -34,19 +33,11 @@ export const Action = ({
   };
 
   const isThemeToggleAction = query === 'Toggle dark/light theme';
-  const isShareArticleAction = query === 'Share this article';
   const icon = isThemeToggleAction ? getToggleThemeIcon() : '↗️';
 
   const handleClick = () => {
     if (isThemeToggleAction) {
       setTheme(theme === 'dark' ? 'default' : 'dark');
-    } else if (isShareArticleAction) {
-      const text = `${document.title} ${publicUrl}${router.pathname} via @siwakasen`;
-
-      window.open(
-        `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,
-        '_blank',
-      );
     } else if (type === 'navigation') {
       router.push({
         pathname: href,
