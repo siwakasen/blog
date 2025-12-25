@@ -13,7 +13,6 @@ FROM base AS fonts
 WORKDIR /app
 RUN apk add --no-cache wget
 RUN mkdir -p public/fonts
-RUN wget -O public/fonts/lora.woff2 "https://fonts.gstatic.com/s/lora/v37/0QI6MX1D_JOuGQbT0gvTJPa787weuxJMkq18ndeYxZ2JTg.woff2"
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -32,7 +31,6 @@ ENV NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL_ARG}
 ENV NEXT_SHARP_PATH="/app/node_modules/sharp"
 
 # Update font references to use local files
-RUN sed -i 's|https://fonts.gstatic.com/s/lora/|/fonts/|g' src/utils/fonts/index.ts
 
 # Build the application
 RUN pnpm run build
