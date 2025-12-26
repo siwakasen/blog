@@ -60,7 +60,7 @@ sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients virtinst dnsm
 ```
   
   <Panel type="warning">
-  ⚠️ Please note that package may vary depending on your Linux distribution. Always refer to your distribution's documentation for specific instructions. This guide was created using Ubuntu 24.04 LTS for the hypervisor.
+  ⚠️ Please note that package may vary depending on your Linux distribution. Always refer to your distribution's documentation for specific instructions. This guide was using Ubuntu 24.04 LTS for the hypervisor.
   </Panel>
 
   Although the interaction between these tools may seem complex at first, the overall architecture is actually quite straightforward. In practice, you'll primarily work with just a couple of these tools for most operations. 
@@ -75,7 +75,7 @@ sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients virtinst dnsm
   </div>
 
   
-## Permissions
+#In # Permissions
 Several configuration steps are required so we can interact with qemu:///system. 
 This allows virtual machines to run as root, which is usually what we want, and it is also 
 the default mode used by virt-manager. A blog post by [Colin Robinson explains the differences 
@@ -97,7 +97,7 @@ When using qemu:///system, access is controlled by polkit. There are a few easy 
 - Edit <code>/etc/polkit-1/rules.d/50-libvirt.rules</code>
 
 ```bash
-# Allow users in wheel group to manage the libvirt daemon without authentication
+# Allow users in libvirt group to manage the libvirt daemon without authentication
 polkit.addRule(function(action, subject) {
     if (action.id == "org.libvirt.unix.manage" &&
         subject.isInGroup("libvirt")) {
@@ -271,7 +271,7 @@ Here's how to customize your VM's ram and storage configuration.
   ```bash
   virsh dominfo node-2
   ```
-  First, we need to power off the VM:
+  Then, we need to power off the VM:
   ```bash
   virsh shutdown node-2
   ```
@@ -284,8 +284,10 @@ Here's how to customize your VM's ram and storage configuration.
   ```bash
   virsh start node-2
   ```
-  In the VM, you can check the memory.
+  Then, let's check the memory allocation again.
   ```bash
+  virsh dominfo node-2
+  # or check inside the vm using:
   free -h
   ```
 ## Wrapping Up
