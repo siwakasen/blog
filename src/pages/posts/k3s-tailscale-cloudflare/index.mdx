@@ -1,23 +1,29 @@
 ---
 title: High Available K3s Cluster with Tailscale and Cloudflare Tunnel
-description: Setting up a High Available K3s cluster with Tailscale and Cloudflare tunnel
-date: '2025-12-22T08:49:06.000Z'
+description:
+  Setting up a High Available K3s cluster with Tailscale and Cloudflare tunnel
+date: '2025-12-26T18:55:12.000Z'
 ogImage:
   title: High Available K3s Cluster with Tailscale and Cloudflare Tunnel
 readingTime: 15 min read
 tags: ['tech', 'networking', 'linux', 'devops']
 ---
 
-{/* !start-of-preview */}
+{/_ !start-of-preview _/}
 
-Setting up a high available kubernetes cluster with multiple server nodes across different networks can be challenging. In this post, I'll walk you through creating a lightweight kubernetes cluster using K3s, Tailscale for secure node-to-node communication, and Cloudflare tunnels for secure external access.
+Setting up a high available kubernetes cluster with multiple server nodes across
+different networks can be challenging. In this post, I'll walk you through
+creating a lightweight kubernetes cluster using K3s, Tailscale for secure
+node-to-node communication, and Cloudflare tunnels for secure external access.
 
-{/* !end-of-preview */}
-
+{/_ !end-of-preview _/}
 
 ## Goals
+
 Before diving in, let's understand what we're going to achieve:
-- High available K3s cluster with multiple server nodes across different networks
+
+- High available K3s cluster with multiple server nodes across different
+  networks
 - Secure communication between nodes using Tailscale
 - Network routes for pod-to-pod communication
 - Public access to services inside the cluster via Cloudflare tunnels
@@ -33,9 +39,16 @@ Before diving in, let's understand what we're going to achieve:
 - Basic Linux understanding
 
 ## Network Setup
-First, we need to install Tailscale on all nodes. If you are confused about the auth key, generate one from your [Tailscale dashboard](https://login.tailscale.com/admin/machines), and then you click <code>Add device</code> button, choose <code>Linux server</code> and Click <code>Generate install script</code>.
+
+First, we need to install Tailscale on all nodes. If you are confused about the
+auth key, generate one from your
+[Tailscale dashboard](https://login.tailscale.com/admin/machines), and then you
+click <code>Add device</code> button, choose <code>Linux server</code> and Click
+
+<code>Generate install script</code>.
 
 ### Tailscale Network Setup
+
 ```bash
 #Install Tailscale
 curl -fsSL https://tailscale.com/install.sh | sh && \
@@ -47,22 +60,27 @@ echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale
 sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
 ```
 
-Now, we need to configure <span className="text-indigo-400">Access Controls (ACLs)</span> for the nodes within Tailscale network following the [K3s network requirements](https://docs.k3s.io/installation/requirements#networking).
+Now, we need to configure <span className="text-indigo-400">Access Controls
+(ACLs)</span> for the nodes within Tailscale network following the
+[K3s network requirements](https://docs.k3s.io/installation/requirements#networking).
 
- <div className="relative flex place-content-center h-80 not-prose">
-    <Image
-      className="object-contain"
-      fill
-      alt="K3s nodes inbound rules"
-      src={'/assets/blog/k3s-tailscale-cloudflare/inbound-rules-k3s-nodes.png'}
-    />
-  </div>
+{' '}
 
-Go to your [Tailscale ACLs](https://login.tailscale.com/admin/acls/file) and add ACLs rules below:
+<div className="relative flex place-content-center h-80 not-prose">
+  <Image
+    className="object-contain"
+    fill
+    alt="K3s nodes inbound rules"
+    src={'/assets/blog/k3s-tailscale-cloudflare/inbound-rules-k3s-nodes.png'}
+  />
+</div>
+
+Go to your [Tailscale ACLs](https://login.tailscale.com/admin/acls/file) and add
+ACLs rules below:
 
 ```yaml
 {
-  
+
   // Define tag ownership for different node types
   "tagOwners": {
 		"tag:nodes":       ["autogroup:owner"],
@@ -106,10 +124,13 @@ Go to your [Tailscale ACLs](https://login.tailscale.com/admin/acls/file) and add
 ```
 
 ### Firewall configuration
-Open necessary port for K3s based on inbound rules K3s nodes and tailscale traffic.
+
+Open necessary port for K3s based on inbound rules K3s nodes and tailscale
+traffic.
+
 ```bash
 # Example for ubuntu server
-# Allow Tailscale traffic 
+# Allow Tailscale traffic
 sudo ufw allow in on tailscale0
 sudo ufw allow out on tailscale0
 
@@ -127,44 +148,50 @@ sudo ufw allow 5001/tcp
 sudo ufw allow 6443/tcp
 ```
 
-
 ## Installing K3s On Each nodes
-Now, let's install K3s on each node. On this guide, I'll install three server nodes and one agent node.
+
+Now, let's install K3s on each node. On this guide, I'll install three server
+nodes and one agent node.
 
 <Panel type="info">
-✨ If you don't want to copy one-by-one installation commands below, I already created <i className='text-emerald-500'>bash scripts</i> in [my repo](https://github.com/siwakasen/k3s-tailscale-cloudflare) for installation setup. Also, in that repo I provide the <i className='text-yellow-500'> YAML files</i> to create Cloudflare tunnels and whoami traefik services.
+  ✨ If you don't want to copy one-by-one installation commands below, I already
+  created <i className="text-emerald-500">bash scripts</i> in [my
+  repo](https://github.com/siwakasen/k3s-tailscale-cloudflare) for installation
+  setup. Also, in that repo I provide the{' '}
+  <i className="text-yellow-500"> YAML files</i> to create Cloudflare tunnels
+  and whoami traefik services.
 </Panel>
 
 ### Initial Server Node
+
 The first server node initializes the cluster and etcd:
-<span id='kubeconfig' />
-```bash
-# Node name for cluster
-NODE_NAME="node1"
-# Get tailscale IP
-TAILSCALE_IP=$(tailscale ip -4)
+
+<span id="kubeconfig" />
+```bash # Node name for cluster NODE_NAME="node1" # Get tailscale IP TAILSCALE_IP=$(tailscale
+ip -4)
 
 # Create K3s config file
-sudo mkdir -p /etc/rancher/k3s
-sudo tee /etc/rancher/k3s/config.yaml <<EOF
+
+sudo mkdir -p /etc/rancher/k3s sudo tee /etc/rancher/k3s/config.yaml <<EOF
 node-name: "${NODE_NAME}"
-node-ip: "${TAILSCALE_IP}"
-node-external-ip: "${TAILSCALE_IP}"
-advertise-address: "${TAILSCALE_IP}"
-tls-san:
-  - "${TAILSCALE_IP}"
-  - "$(hostname -f)"
-cluster-init: true
-flannel-iface: "tailscale0"
-etcd-expose-metrics: true
-EOF
+node-ip: "${TAILSCALE_IP}" node-external-ip:
+"${TAILSCALE_IP}"
+advertise-address: "${TAILSCALE_IP}" tls-san:
+
+- "${TAILSCALE_IP}"
+- "$(hostname -f)" cluster-init: true flannel-iface: "tailscale0"
+  etcd-expose-metrics: true EOF
 
 # Install K3s initial server
-sudo curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --cluster-init" sh -
+
+sudo curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --cluster-init"
+sh -
 
 # Get K3s token (copy to clipboard)
+
 sudo cat /var/lib/rancher/k3s/server/node-token
-```
+
+````
 
 And also you can get the kubectl config on <code><i>/etc/rancher/k3s/k3s.yaml</i></code> and pasted it to your local machine in <code>~/.kube/config</code> file.
 
@@ -196,9 +223,10 @@ EOF
 
 # Install K3s joining server
 curl -sfL https://get.k3s.io | sh -s - server
-```
+````
 
 ### Agent Node
+
 ```bash
 # Node name
 NODE_NAME="[your-agent-node-name]"
@@ -224,40 +252,53 @@ curl -sfL https://get.k3s.io | sh -s - agent
 ```
 
 ## Verify The Cluster
-After the installation, let's check the nodes using kubectl (don't forget to copy the [kubectl config](#kubeconfig) to your local machine).
+
+After the installation, let's check the nodes using kubectl (don't forget to
+copy the [kubectl config](#kubeconfig) to your local machine).
+
 ### Check Nodes Status
+
 If everything is fine, it will look similar to this:
 
 ```bash
 $ kubectl get node -o wide
-NAME    STATUS   ROLES                       AGE    VERSION        INTERNAL-IP      EXTERNAL-IP      
-node1   Ready    control-plane,etcd,master   30h    v1.33.6+k3s1   100.xxx.xxx.xxx  100.xxx.xxx.xxx   
-node2   Ready    control-plane,etcd,master   30h    v1.33.6+k3s1   100.xxx.xxx.xxx  100.xxx.xxx.xxx    
+NAME    STATUS   ROLES                       AGE    VERSION        INTERNAL-IP      EXTERNAL-IP
+node1   Ready    control-plane,etcd,master   30h    v1.33.6+k3s1   100.xxx.xxx.xxx  100.xxx.xxx.xxx
+node2   Ready    control-plane,etcd,master   30h    v1.33.6+k3s1   100.xxx.xxx.xxx  100.xxx.xxx.xxx
 node3   Ready    <none>                      30h    v1.33.6+k3s1   100.xxx.xxx.xxx  100.xxx.xxx.xxx
 node4   Ready    control-plane,etcd,master   30h    v1.33.6+k3s1   100.xxx.xxx.xxx  100.xxx.xxx.xxx
 ```
 
 ### Verify Pod Connectivity Across Nodes
-To test network connectivity between nodes and pods, we'll deploy the whoami Traefik service and verify connections from different nodes. First, apply the [<span className="text-yellow-500">whoami.yaml</span>](https://github.com/siwakasen/k3s-tailscale-cloudflare/blob/master/whoami.yaml) to your Kubernetes cluster.
+
+To test network connectivity between nodes and pods, we'll deploy the whoami
+Traefik service and verify connections from different nodes. First, apply the
+[<span className="text-yellow-500">whoami.yaml</span>](https://github.com/siwakasen/k3s-tailscale-cloudflare/blob/master/whoami.yaml)
+to your Kubernetes cluster.
 
 ```bash
 kubectl apply -f whoami.yaml
 ```
 
 Next, verify the status of the pods:
+
 ```bash
 kubectl get pods -o wide -n whoami
 ```
+
 The output should display the running pods across your nodes:
+
 ```bash
-NAME                      READY   STATUS    RESTARTS   AGE   IP           NODE    
-whoami-855976c869-m2s6v   1/1     Running   0          11m   10.42.4.3    node3 
-whoami-855976c869-mbxd5   1/1     Running   0          11m   10.42.2.4    node2 
-whoami-855976c869-smmff   1/1     Running   0          11m   10.42.0.18   node4 
-whoami-855976c869-whbd2   1/1     Running   0          11m   10.42.1.5    node1 
+NAME                      READY   STATUS    RESTARTS   AGE   IP           NODE
+whoami-855976c869-m2s6v   1/1     Running   0          11m   10.42.4.3    node3
+whoami-855976c869-mbxd5   1/1     Running   0          11m   10.42.2.4    node2
+whoami-855976c869-smmff   1/1     Running   0          11m   10.42.0.18   node4
+whoami-855976c869-whbd2   1/1     Running   0          11m   10.42.1.5    node1
 ```
 
-Now, let's test connectivity between nodes. From `node1`, try accessing a pod running on a different node:
+Now, let's test connectivity between nodes. From `node1`, try accessing a pod
+running on a different node:
+
 ```bash
 # Execute this on node1
 curl 10.42.0.18  # This is the IP of a pod on node4
@@ -275,78 +316,119 @@ Accept: */*
 ```
 
 ## Hosting Kubernetes Services With Cloudflare Tunnel
-Now, let's deploy the whoami service to be accessible publicly via Cloudflare Tunnel. First, we need to create a tunnel from [Dashboard Zero Trust Cloudflare](https://one.dash.cloudflare.com). On the sidebar, choose `Networks` and then `Connectors`.
 
- <div className="relative flex place-content-center h-44 not-prose">
-    <Image
-      className="object-contain"
-      fill
-      alt="Sidebar Cloudflare Tunnel"
-      src={'/assets/blog/k3s-tailscale-cloudflare/sidebar-cloudflare-tunnel.png'}
-    />
-  </div>
+Now, let's deploy the whoami service to be accessible publicly via Cloudflare
+Tunnel. First, we need to create a tunnel from
+[Dashboard Zero Trust Cloudflare](https://one.dash.cloudflare.com). On the
+sidebar, choose `Networks` and then `Connectors`.
 
-Then, create a tunnel and follow the instructions until you arrive into this page:
- <div className="relative flex place-content-center h-96 not-prose">
-    <Image
-      className="object-contain"
-      fill
-      alt="Cloudflare Token"
-      src={'/assets/blog/k3s-tailscale-cloudflare/cloudflare-token.png'}
-    />
-  </div>
-Just copy the token and paste it into the [<span className='text-yellow-500'>cloudflare.yaml</span>](https://github.com/siwakasen/k3s-tailscale-cloudflare/blob/master/cloudflare.yaml) file. and specify the node to run the cloudflared pod
+{' '}
+
+<div className="relative flex place-content-center h-44 not-prose">
+  <Image
+    className="object-contain"
+    fill
+    alt="Sidebar Cloudflare Tunnel"
+    src={'/assets/blog/k3s-tailscale-cloudflare/sidebar-cloudflare-tunnel.png'}
+  />
+</div>
+
+Then, create a tunnel and follow the instructions until you arrive into this
+page:
+
+{' '}
+
+<div className="relative flex place-content-center h-96 not-prose">
+  <Image
+    className="object-contain"
+    fill
+    alt="Cloudflare Token"
+    src={'/assets/blog/k3s-tailscale-cloudflare/cloudflare-token.png'}
+  />
+</div>
+Just copy the token and paste it into the [<span className="text-yellow-500">
+  cloudflare.yaml
+</span>
+](https://github.com/siwakasen/k3s-tailscale-cloudflare/blob/master/cloudflare.yaml)
+file. and specify the node to run the cloudflared pod
 
 ```bash
 kubectl apply -f cloudflare.yaml
 ```
-On my case, <span className='text-lime-400'>node1</span>, <span className='text-lime-400'>node2</span>, and <span className='text-lime-400'>node3</span> are VMs running on the same host machine, while <span className='text-rose-500'>node4</span> is a cloud VPS. Therefore, I run the cloudflared pod only on <span className='text-lime-400'>node1</span> and <span className='text-rose-500'>node4</span>.
- <div className="relative flex place-content-center h-96 not-prose">
-    <Image
-      className="object-contain"
-      fill
-      alt="Architecture Server"
-      src={'/assets/blog/k3s-tailscale-cloudflare/architecture.png'}
-    />
-  </div>
+
+On my case, <span className='text-lime-400'>node1</span>,
+
+<span className="text-lime-400">node2</span>, and
+<span className="text-lime-400">node3</span> are VMs running on the same host
+machine, while <span className="text-rose-500">node4</span> is a cloud VPS.
+Therefore, I run the cloudflared pod only on
+<span className="text-lime-400">node1</span> and
+<span className="text-rose-500">node4</span>.
+
+{' '}
+
+<div className="relative flex place-content-center h-96 not-prose">
+  <Image
+    className="object-contain"
+    fill
+    alt="Architecture Server"
+    src={'/assets/blog/k3s-tailscale-cloudflare/architecture.png'}
+  />
+</div>
 
 Now, let's check the cloudflared pod status:
+
 ```bash
 kubectl get pods -o wide -n cloudflared
 ```
+
 And it should show similar like this:
+
 ```bash
-NAME                           READY   STATUS    RESTARTS   AGE     IP           NODE    
+NAME                           READY   STATUS    RESTARTS   AGE     IP           NODE
 cloudflared-5c49f8f555-h7p2c   1/1     Running   0          3m37s   10.42.1.6    node1
 cloudflared-5c49f8f555-jbqwx   1/1     Running   0          3m25s   10.42.0.19   node4
 ```
 
 <p>And the last step, let's make the whoami services online!</p>
-<p>Inside the Dashboard Zero Trust Cloudflare, create new published application routes with this configuration:</p>
- <div className="relative flex place-content-center h-80 not-prose">
-    <Image
-      className="object-contain"
-      fill
-      alt="Architecture Server"
-      src={'/assets/blog/k3s-tailscale-cloudflare/whoami-published-app.png'}
-    />
-  </div>
+<p>
+  Inside the Dashboard Zero Trust Cloudflare, create new published application
+  routes with this configuration:
+</p>
+<div className="relative flex place-content-center h-80 not-prose">
+  <Image
+    className="object-contain"
+    fill
+    alt="Architecture Server"
+    src={'/assets/blog/k3s-tailscale-cloudflare/whoami-published-app.png'}
+  />
+</div>
 
-<Panel title='Congratulations 🥳' type='warning'>
-You successfully deployed the whoami service to the internet via Cloudflare Tunnel.
+<Panel title="Congratulations 🥳" type="warning">
+  You successfully deployed the whoami service to the internet via Cloudflare
+  Tunnel.
 </Panel>
 
 ## Wrapping Up
-And that's a wrap! 🎉 We've just set up a fun little K3s cluster, connected it with Tailscale, and made it accessible via Cloudflare Tunnel. Here's what we played with:
+
+And that's a wrap! 🎉 We've just set up a fun little K3s cluster, connected it
+with Tailscale, and made it accessible via Cloudflare Tunnel. Here's what we
+played with:
 
 ### What We Built
+
 - A multi-node K3s cluster that doesn't care where the nodes live
 - Secure connections between nodes using Tailscale's magic ✨
 - A simple whoami service that's now chilling on the internet
 
 ### If Things Go Sideways
+
 - Check if Tailscale is happy: `tailscale status`
-- Make sure your node's firewall doesn't block the tailscale and K3s connections.
+- Make sure your node's firewall doesn't block the tailscale and K3s
+  connections.
 
 ### Final Thoughts
-This setup is great for experiments and learning. It's like having a mini cloud in your pocket! Feel free to break things, rebuild, and explore. The best way to learn is by trying stuff out and seeing what happens.
+
+This setup is great for experiments and learning. It's like having a mini cloud
+in your pocket! Feel free to break things, rebuild, and explore. The best way to
+learn is by trying stuff out and seeing what happens.
