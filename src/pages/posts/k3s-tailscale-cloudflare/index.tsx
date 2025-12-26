@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next/types';
-
 import { getPostBySlug } from '@/blog/getPosts';
 import { Post as PostType } from '@/blog/types';
 import Post from '@/components/Blog/Post/Post';
@@ -21,4 +20,3 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     },
   };
 };
-
