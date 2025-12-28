@@ -1,5 +1,7 @@
 ## Hello, welcome to my Personal Blog👋
 
+![k3s logo](./public/assets/k3s-logo-light.svg)
+
 Personal blog with [giscus](https://giscus.app/)
 
 On this repo I also cover pipeline to build Docker Image of the project, and

@@ -5,7 +5,7 @@ date: '2025-12-26T19:01:31.000Z'
 ogImage:
   title: High Available K3s Cluster with Tailscale and Cloudflare Tunnel
 readingTime: 15 min read
-tags: ['tech', 'networking', 'linux', 'devops']
+tags: ['tech', 'networking', 'kubernetes', 'linux', 'devops']
 ---
 
 {/* !start-of-preview */}
@@ -25,7 +25,7 @@ Before diving in, let's understand what we're going to achieve:
 ## Requirements
 
 - Minimal 3 Linux servers (for high availability)
-- Internet connectivity on all servers
+- Internet connection on all servers
 - Cloudflare account for tunnel management
 - Tailscale account with dashboard access
 - SSH access to all servers with sudo privileges
@@ -237,8 +237,8 @@ node3   Ready    <none>                      30h    v1.33.6+k3s1   100.xxx.xxx.x
 node4   Ready    control-plane,etcd,master   30h    v1.33.6+k3s1   100.xxx.xxx.xxx  100.xxx.xxx.xxx
 ```
 
-### Verify Pod Connectivity Across Nodes
-To test network connectivity between nodes and pods, we'll deploy the whoami Traefik service and verify connections from different nodes. First, apply the [<span className="text-yellow-500">whoami.yaml</span>](https://github.com/siwakasen/k3s-tailscale-cloudflare/blob/master/whoami.yaml) to your Kubernetes cluster.
+### Verify Pod Connection Between Nodes
+To test network connection between nodes and pods, we'll deploy the whoami Traefik service and verify connections from different nodes. First, apply the [<span className="text-yellow-500">whoami.yaml</span>](https://github.com/siwakasen/k3s-tailscale-cloudflare/blob/master/whoami.yaml) to your Kubernetes cluster.
 
 ```bash
 kubectl apply -f whoami.yaml
@@ -257,7 +257,7 @@ whoami-855976c869-smmff   1/1     Running   0          11m   10.42.0.18   node4
 whoami-855976c869-whbd2   1/1     Running   0          11m   10.42.1.5    node1 
 ```
 
-Now, let's test connectivity between nodes. From `node1`, try accessing a pod running on a different node:
+Now, let's test connection between nodes. From `node1`, try accessing a pod running on a different node:
 ```bash
 # Execute this on node1
 curl 10.42.0.18  # This is the IP of a pod on node4
@@ -274,7 +274,7 @@ User-Agent: curl/8.5.0
 Accept: */*
 ```
 
-## Hosting Kubernetes Services With Cloudflare Tunnel
+## Hosting Whoami Service Via Cloudflare Tunnel
 Now, let's deploy the whoami service to be accessible publicly via Cloudflare Tunnel. First, we need to create a tunnel from [Dashboard Zero Trust Cloudflare](https://one.dash.cloudflare.com). On the sidebar, choose `Networks` and then `Connectors`.
 
  <div className="relative flex place-content-center h-44 not-prose">
