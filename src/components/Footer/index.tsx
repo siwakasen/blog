@@ -56,6 +56,14 @@ const FOOTER_LINKS: FooterSection[] = [
         label: 'Tech',
         href: '/blog?tags=tech',
       },
+      {
+        label: 'Kubernetes',
+        href: '/blog?tags=kubernetes',
+      },
+      {
+        label: 'Linux',
+        href: '/blog?tags=linux',
+      }
     ],
   },
 ];
