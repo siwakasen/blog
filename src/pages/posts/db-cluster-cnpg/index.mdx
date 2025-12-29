@@ -18,13 +18,3 @@ On previous posts, we have created a Kubernetes cluster with Tailscale and Cloud
 > TL;DR:
 >
 > Master-Slave Architecture in database clustering is a setup where one database node acts as the master and one or more nodes act as slaves. The master node handles all write operations like insert, update, and delete. Data changes always start here. And the slave nodes replicate data from the master for read operations and backup purposes.
-
-### Why Master-Slave Architecture?
-
-Master-Slave Architecture is a common approach in database clustering. It is simple to implement and manage. It is also a cost-effective solution for small to medium-sized databases.
-
-However, it is not a good solution for large databases. It is not scalable and it is not a good solution for high availability.
-
-### What is CloudNativePG?
-
-CloudNativePG or CNPG is a PostgreSQL operator for Kubernetes. It is a complete solution for managing PostgreSQL in Kubernetes. CNPG has been designed to be compatible with the Cloud Native Computing Foundation (CNCF) PostgreSQL Operator specification.
