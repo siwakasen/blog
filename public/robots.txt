@@ -1,0 +1,18 @@
+# robots.txt for siwakasen.dev
+# Standard-compliant robots.txt file
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow API routes and internal Next.js paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /404
+
+# Sitemap location
+Sitemap: https://siwakasen.dev/sitemap.xml
+
+# RSS Feed (allowed and discoverable)
+# Feed is accessible at: https://siwakasen.dev/feed.xml
+
