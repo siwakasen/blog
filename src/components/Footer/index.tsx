@@ -63,7 +63,7 @@ const FOOTER_LINKS: FooterSection[] = [
       {
         label: 'Linux',
         href: '/blog?tags=linux',
-      }
+      },
     ],
   },
 ];
