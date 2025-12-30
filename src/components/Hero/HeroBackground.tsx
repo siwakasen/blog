@@ -11,11 +11,6 @@ export const HeroBackground = () => {
     }
   `;
 
-  // const flyPlus = keyframes`
-  //   100% {
-  //     transform: rotate(-1turn) translate(100px) rotate(1turn);
-  //   }
-  // `;
 
   /**
    * Safari seems to have a bug where some square artifacts are visible
@@ -75,17 +70,6 @@ export const HeroBackground = () => {
     left: -20%;
   `;
 
-  // const three = css`
-  //   border-radius: 100%;
-  //   width: calc(var(--blob-scale) * 108%);
-  //   height: calc(var(--blob-scale) * 108%);
-  //   bottom: -20%;
-  //   right: -25%;
-  //   background-color: hsl(${getHslString('tertiary')});
-  //   animation: ${flyPlus} 8s linear infinite;
-  //   transform: rotate(0) translate(100px) rotate(0);
-  // `;
-
   const left = css`
     position: absolute;
     inset: 0;
@@ -97,8 +81,6 @@ export const HeroBackground = () => {
       <div className={left}>
         <div className={cn(base, one)}></div>
         <div className={cn(base, two)}></div>
-        {/* Turning this off for now, looks pretty nice */}
-        {/* <div className={cn(base, three)}></div> */}
       </div>
     </div>
   );
