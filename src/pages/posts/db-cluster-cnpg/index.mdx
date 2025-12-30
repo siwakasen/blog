@@ -1,0 +1,197 @@
+---
+title: 'Minimal Setup HA Database Clustering with CloudNativePG'
+description: Minimal Setup for a highly available PostgreSQL cluster with CloudNativePG
+date: '2025-12-30T17:53:17.000Z'
+ogImage:
+  title: 'Minimal Setup HA Database Clustering with CloudNativePG'
+readingTime: 10 min read
+tags: ['tech', 'database', 'kubernetes', 'postgresql']
+---
+
+
+{/* !start-of-preview */}
+
+In my previous post, I set up a Kubernetes cluster with Tailscale and Cloudflare Tunnel. Now let's build something useful with it. In this post, we're going to spin up a highly available PostgreSQL database cluster using CNPG.
+
+{/* !end-of-preview */}
+
+> TL;DR:
+>
+> [CloudNativePG](https://cloudnative-pg.io/) is a Kubernetes operator that manages highly available PostgreSQL database clusters. It uses a  <Mark> primary/standby architecture </Mark> where the primary node handles all writes, while standby nodes replicate data from the primary and handle read operations and backups.
+
+## Background Story
+Long story short, I was developing [a web application with microservices architecture](https://github.com/siwakasen/tourism-microservices). In my previous setup, I was using Docker to run all the stacks, including the front-end, back-end, load balancer, and database. And all of those ran on a single server (a laptop running Ubuntu Server, actually 😆). 
+
+Then, I started thinking, What if the WiFi connection to my server went down, or worse, the electricity went out? From here, I started thinking about scaling it horizontally—adding more servers, and luckily I had one available in the cloud. But, of course, there are obstacles to doing that, one of which is the database itself. I needed to cluster it, making the database replicated across the servers.
+
+Here I found the solution. Since I was only using PostgreSQL for the database, I chose CNPG as the operator, which takes care of the primary database and its replicas across multiple servers, keeping the data synchronized everywhere.
+
+
+## Prerequisites
+- Kubernetes cluster with at least 3 nodes
+- Kubectl installed on your local computer
+- Basic Kubernetes understanding
+
+## Database Setup
+Here's the steps to set up the database using CNPG:
+
+### Installing CNPG
+Installation is quite simple. There are many ways to install the CNPG operator, via a YAML manifest applied with kubectl, using a Helm chart, or using Operator Lifecycle Manager (OLM).
+But for this guide, I'll just use kubectl to install the operator.
+```bash
+kubectl apply --server-side -f \
+https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.28/releases/cnpg-1.28.0.yaml
+```
+Now let's verify what we just installed.
+```bash
+kubectl rollout status deployment \
+  -n cnpg-system cnpg-controller-manager
+
+kubectl get pod -n cnpg-system -o wide
+```
+
+The output should be similar to this:
+```bash
+deployment "cnpg-controller-manager" successfully rolled out
+NAME                               READY   STATUS    RESTARTS   AGE   IP           NODE    
+cnpg-controller-manager-7664d6667f   1/1     Running   0          11m   10.42.1.5    node1 
+```
+### Creating a Database Cluster
+Now let's create a database cluster. We'll start by preparing the YAML manifest for the PostgreSQL database.
+
+The first manifest is a secret for the admin superuser:
+```yaml
+# psql-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+type: kubernetes.io/basic-auth
+stringData:
+  username: myuser
+  password: [your-password]
+
+```
+
+
+The second manifest is a [Cluster Image Catalog](https://cloudnative-pg.io/docs/1.28/image_catalog). It's an essential resource that empowers you to define images for creating a Cluster. It makes it easier to choose which image version to use as the database.
+```yaml
+# psql-image.yaml
+apiVersion: postgresql.cnpg.io/v1
+kind: ClusterImageCatalog
+metadata:
+  name: postgresql
+spec:
+  images:
+    - major: 15
+      image: ghcr.io/cloudnative-pg/postgresql:15.14-system-trixie
+    - major: 16
+      image: ghcr.io/cloudnative-pg/postgresql:16.10-system-trixie
+    - major: 17
+      image: ghcr.io/cloudnative-pg/postgresql:17.6-system-trixie
+    - major: 18
+      image: ghcr.io/cloudnative-pg/postgresql:18.1-system-trixie
+```
+
+The last one is the database cluster itself:
+```yaml
+# psql-cluster.yaml
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: psql-instance
+spec:
+  instances: 3
+  imageCatalogRef: #  Specify the image catalog and the major version
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql
+    major: 18
+  
+  bootstrap:
+    initdb: # initial database
+      database: app
+      owner: myuser
+      secret:
+        name: my-secret
+  enableSuperuserAccess: false 
+
+  # This allows automatic primary switchover during updates without manual intervention
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    size: 5Gi
+```
+
+Now, let's apply them all:
+```bash
+kubectl apply -f psql-secret.yaml -f psql-image.yaml -f psql-cluster.yaml
+```
+
+You can check that the pods are being created with this command:
+```bash
+kubectl get pods -l cnpg.io/cluster=psql-instance
+
+# You will see something similar to this
+NAME              READY   STATUS    RESTARTS   AGE
+psql-instance-1   1/1     Running   0          5m21s
+psql-instance-2   1/1     Running   0          4m59s
+psql-instance-3   1/1     Running   0          4m34s
+```
+
+If you want to see which pod becomes the primary, check with this command:
+```bash
+kubectl get cluster
+
+# It will show you the cluster status and primary pod name
+NAME            AGE     INSTANCES   READY   STATUS                     PRIMARY
+psql-instance   6m21s   3           3       Cluster in healthy state   psql-instance-1
+```
+
+### Connecting To Database
+Now, let's try to connect to the primary database:
+
+```bash
+# First, let's get the secret and store it as a variable
+PGPASSWORD=$(kubectl get secret my-secret -o jsonpath='{.data.password}' | base64 -d)
+
+# Connect to primary instance
+kubectl exec -it psql-instance-1 -- env PGPASSWORD="$PGPASSWORD" psql -U myuser -h localhost -d app
+```
+
+```bash
+# The result will be similar to this:
+Defaulted container "postgres" out of: postgres, bootstrap-controller (init)
+psql (18.1 (Debian 18.1-1.pgdg13+2))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, compression: off, ALPN: postgresql)
+Type "help" for help.
+
+app=>
+```
+But what about <Mark>connecting to the database from the app?</Mark> For this, let's check the cluster services first:
+```bash
+kubectl get svc -l cnpg.io/cluster=psql-instance
+```
+
+```bash
+# This will show you 3 services
+NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+psql-instance-r    ClusterIP   10.43.116.222   <none>        5432/TCP   3m10s
+psql-instance-ro   ClusterIP   10.43.59.74     <none>        5432/TCP   3m10s
+psql-instance-rw   ClusterIP   10.43.117.244   <none>        5432/TCP   3m10s
+
+# r means read, it can route traffic to both the primary and all replica instances
+# ro means read-only, it routes traffic to replica instances and also load-balances the traffic
+# rw means read-write, it routes traffic to the primary instance
+```
+From the service name above, we can use <span className='text-yellow-500'>Kubernetes DNS Resolution</span> to connect from our app like this:
+```bash
+# for read-only:
+postgres://myuser:[your-password]@psql-cluster-ro.default.svc.cluster.local:5432/app
+# and for write operations:
+postgres://myuser:[your-password]@psql-cluster-rw.default.svc.cluster.local:5432/app
+
+```
+<Panel title='Congratulations 🥳' type='warning'>
+You successfully set up a highly available PostgreSQL database cluster using CNPG. If you planning to use this CNPG for production, please check the [CNPG documentation](https://cloudnative-pg.io/docs/) for more details.
+</Panel>

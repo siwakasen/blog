@@ -12,7 +12,7 @@ export const tokenClassNames = {
   'attr-value': 'text-code-green',
   deleted: 'text-code-red',
   inserted: 'text-code-green',
-  punctuation: 'text-code-white',
+  punctuation: 'text-code-purple',
   'template-punctuation': 'text-code-green',
   keyword: 'text-code-purple',
   string: 'text-code-green',
@@ -30,6 +30,13 @@ export const tokenClassNames = {
   variable: 'text-code-blue',
   'interpolation-punctuation': 'text-code-teal',
   interpolation: 'text-code-red',
+  key: 'text-code-yellow',
+  text: 'text-code-green',
+  scalar: 'text-code-green',
+  anchor: 'text-code-purple',
+  alias: 'text-code-purple',
+  important: 'text-code-red',
+  number: 'text-code-blue',
 };
 
 export const rehypePlugins = [
