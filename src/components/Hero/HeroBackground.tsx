@@ -10,8 +10,6 @@ export const HeroBackground = () => {
       transform: rotate(1turn) translate(80px) rotate(-1turn);
     }
   `;
-
-
   /**
    * Safari seems to have a bug where some square artifacts are visible
    * upon switching between theme.
