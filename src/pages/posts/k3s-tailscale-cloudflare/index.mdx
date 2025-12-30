@@ -25,11 +25,10 @@ Before diving in, let's understand what we're going to achieve:
 ## Requirements
 
 - Minimal 3 Linux servers (for high availability)
-- Internet connection on all servers
 - Cloudflare account for tunnel management
-- Tailscale account with dashboard access
-- SSH access to all servers with sudo privileges
-- Kubectl installed on your local computer
+- Registered domain on Cloudflare
+- Kubectl installed in your local computer
+- Tailscale installed in your local computer (for private access to the cluster)
 - Basic Linux understanding
 
 ## Network Setup
@@ -333,7 +332,7 @@ cloudflared-5c49f8f555-jbqwx   1/1     Running   0          3m25s   10.42.0.19  
   </div>
 
 <Panel title='Congratulations 🥳' type='warning'>
-You successfully deployed the whoami service to the internet via Cloudflare Tunnel.
+You successfully deployed the [whoami service](https://whoami.siwakasen.dev) to the internet via Cloudflare Tunnel.
 </Panel>
 
 ## Wrapping Up
