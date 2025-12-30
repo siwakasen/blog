@@ -36,6 +36,7 @@ export const tokenClassNames = {
   anchor: 'text-code-purple',
   alias: 'text-code-purple',
   important: 'text-code-red',
+  number: 'text-code-blue',
 };
 
 export const rehypePlugins = [
