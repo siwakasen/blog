@@ -98,50 +98,56 @@ export const LandingHero = () => {
     }
   `;
 
+  const wrapperClass = css`
+    position: relative;
+  `;
+
   return (
-    <div
-      className={cn(
-        'p-4',
-        'pb-8',
-        'sm:p-8',
-        'rounded-none',
-        'sm:rounded-3xl',
-        '-mx-4',
-        'sm:mx-0',
-        '-mt-12', // Cancels out the padding of <PageContainer />
-        'sm:mt-0',
-      )}
-    >
-      <h1 className="text-4xl md:text-6xl font-bold font-heading text-theme-heading transition-colors">
-        Hi, I am Riksi! 👋
-      </h1>
-      <Paragraph>
-        I am a tech enthusiast who{' '}
-        <Mark>passionate with Linux and managing infrastructure.</Mark> I do
-        homelabbing and self-host many services to explore infrastructure
-        hands-on.
-      </Paragraph>
+    <div className={cn(wrapperClass)}>
+      <div
+        className={cn(
+          'p-4',
+          'pb-8',
+          'sm:p-8',
+          'rounded-none',
+          'sm:rounded-3xl',
+          '-mx-4',
+          'sm:mx-0',
+          '-mt-12', // Cancels out the padding of <PageContainer />
+          'sm:mt-0',
+        )}
+      >
+        <h1 className="text-4xl md:text-6xl font-bold font-heading text-theme-heading transition-colors">
+          Hi, I am Riksi! 👋
+        </h1>
+        <Paragraph>
+          I am a tech enthusiast who{' '}
+          <Mark>passionate with Linux and managing infrastructure.</Mark> I do
+          homelabbing and self-host many services to explore infrastructure
+          hands-on.
+        </Paragraph>
 
-      <Paragraph>
-        I also enjoy software engineering, building various projects to deliver
-        digital solutions.
-      </Paragraph>
+        <Paragraph>
+          I also enjoy software engineering, building various projects to deliver
+          digital solutions.
+        </Paragraph>
 
-      <div className={cn('mt-8', 'sm:mt-12', 'flex')}>
-        <InternalLink
-          className={cn(baseCtaButton, ctaButton)}
-          href="/about"
-          onClick={() => {
-            sendEventTracker({
-              name: 'click',
-              category: `${router.pathname} - hero`,
-              label: 'More about me &arr;',
-            });
-          }}
-          isNotFancy
-        >
-          <span>More about me &rarr;</span>
-        </InternalLink>
+        <div className={cn('mt-8', 'sm:mt-12', 'flex')}>
+          <InternalLink
+            className={cn(baseCtaButton, ctaButton)}
+            href="/about"
+            onClick={() => {
+              sendEventTracker({
+                name: 'click',
+                category: `${router.pathname} - hero`,
+                label: 'More about me &arr;',
+              });
+            }}
+            isNotFancy
+          >
+            <span>More about me &rarr;</span>
+          </InternalLink>
+        </div>
       </div>
     </div>
   );

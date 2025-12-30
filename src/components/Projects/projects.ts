@@ -14,7 +14,7 @@ export const projects: Project[] = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RecaptchaLogo.svg/2560px-RecaptchaLogo.svg.png',
   },
   {
-    name: 'Tourism Microservices',
+    name: 'Bali Travel Ride',
     url: 'https://travel.vulpbox.com',
     repo: 'https://github.com/siwakasen/tourism-microservices',
     coverImage:
