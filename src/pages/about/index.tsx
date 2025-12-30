@@ -17,7 +17,7 @@ export default function About() {
     <>
       <PageMetaTags />
       <PageTitle>
-        About me <EmojiSpan>👨‍💻</EmojiSpan>
+        About me <EmojiSpan>🐧</EmojiSpan>
       </PageTitle>
       <Paragraph>
         I am a tech enthusiast passionate about Linux and managing
