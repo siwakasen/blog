@@ -1,7 +1,17 @@
 [
   {
+    "title": "Minimal Setup HA Database Clustering with CloudNativePG",
+    "description": "Minimal Setup for a highly available PostgreSQL cluster with CloudNativePG",
+    "link": "/posts/db-cluster-cnpg"
+  },
+  {
+    "title": "High Available K3s Cluster with Tailscale and Cloudflare Tunnel",
+    "description": "Setting up a High Available K3s cluster with Tailscale and Cloudflare tunnel",
+    "link": "/posts/k3s-tailscale-cloudflare"
+  },
+  {
     "title": "Linux Hypervisor Setup (libvirt/qemu/kvm)",
-    "description": "One of the things I love most about Linux is how it allows me to combine different tools to create powerful setups.  One example is provisioning VMs. With Linux, you can turn an old or unused laptop or computer into a hypervisor  without spending money on cloud services.",
+    "description": "With Linux, you can combine different tools to create powerful setups. One example is provisioning VMs, and you can turn an old or unused laptop or computer into a hypervisor without spending money on cloud services.",
     "link": "/posts/linux-hypervisor-setup"
   }
 ]
