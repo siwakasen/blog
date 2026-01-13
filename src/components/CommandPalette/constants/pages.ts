@@ -7,7 +7,7 @@ import { PageData } from '../../../../types/types';
 export const PAGES: readonly PageData[] = [
   {
     title: 'Home',
-    description: 'The home page of my personal site 🏠',
+    description: 'The home page of my website 🏠',
     link: '/',
   },
   {
