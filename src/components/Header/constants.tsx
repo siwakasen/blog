@@ -27,4 +27,16 @@ export const navLinks = [
     },
     children: 'Blog',
   },
+  {
+    href: '/about',
+    'aria-label': 'About me',
+    onClick: () => {
+      sendEventTracker({
+        name: 'click',
+        category: 'header nav',
+        label: 'about',
+      });
+    },
+    children: 'About',
+  },
 ];
