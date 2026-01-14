@@ -9,33 +9,56 @@ export type JobHistoryEvent = BaseEvent & {
 };
 
 export const timelineEvents = [
-  TODAY >= new Date('2025-01-15')
-    ? {
-        from: new Date('2025-01-15'),
-        to: TODAY,
-        title: 'Application Developer',
-        description: 'PT Bank Central Asia Tbk | Intern',
-        variant: 'blue',
-        details: (
-          <>
-            <p>
-              {' '}
-              Not long after finishing my previous internship, I continued my
-              next internship at BCA. At here, I helped revamp a full-stack web
-              application by migrating it from legacy frameworks to Next.js,
-              modernizing the tech stack for better performance,
-              maintainability, and long-term relevance.
-            </p>
-            <p>
-              I also learned to strengthened frontend web security by
-              integrating encryption directly into the frontend workflow,
-              ensuring sensitive data stayed protected during transmission.
-            </p>
-          </>
-        ),
-      }
-    : null,
-
+  // TODAY >= new Date('2025-01-15')
+  //   ? {
+  //       from: new Date('2025-01-15'),
+  //       to: TODAY,
+  //       title: 'Application Developer',
+  //       description: 'PT Bank Central Asia Tbk | Intern',
+  //       variant: 'blue',
+  //       details: (
+  //         <>
+  //           <p>
+  //             {' '}
+  //             Not long after finishing my previous internship, I continued my
+  //             next internship at BCA. At here, I helped revamp a full-stack web
+  //             application by migrating it from legacy frameworks to Next.js,
+  //             modernizing the tech stack for better performance,
+  //             maintainability, and long-term relevance.
+  //           </p>
+  //           <p>
+  //             I also learned to strengthened frontend web security by
+  //             integrating encryption directly into the frontend workflow,
+  //             ensuring sensitive data stayed protected during transmission.
+  //           </p>
+  //         </>
+  //       ),
+  //     }
+  //   : null,
+  {
+    from: new Date('2025-01-15'),
+    to: TODAY,
+    title: 'Application Developer',
+    description: 'PT Bank Central Asia Tbk | Intern',
+    variant: 'blue',
+    details: (
+      <>
+        <p>
+          {' '}
+          Not long after finishing my previous internship, I continued my next
+          internship at BCA. At here, I helped revamp a full-stack web
+          application by migrating it from legacy frameworks to Next.js,
+          modernizing the tech stack for better performance, maintainability,
+          and long-term relevance.
+        </p>
+        <p>
+          I also learned to strengthened frontend web security by integrating
+          encryption directly into the frontend workflow, ensuring sensitive
+          data stayed protected during transmission.
+        </p>
+      </>
+    ),
+  },
   {
     from: new Date('2024-08-01'),
     to: new Date('2025-01-04'),
