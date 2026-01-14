@@ -64,23 +64,19 @@ export const getMonthDifference = (a: Date, b: Date) => {
 export const getTimeDifference = (a: Date, b: Date) => {
   const monthDiff = getMonthDifference(a, b);
 
-  if (monthDiff < 1) {
-    return `1m`;
+  if (monthDiff <= 0) {
+    return '1m';
   }
 
-  if (monthDiff < 11) {
-    return `${monthDiff + 1}m`;
-  }
-
-  if (monthDiff === 11) {
-    return `1y`;
+  if (monthDiff < 12) {
+    return `${monthDiff}m`;
   }
 
   const years = Math.floor(monthDiff / 12);
-  const months = (monthDiff % 12) + 1;
+  const months = monthDiff % 12;
 
-  if (months === 12) {
-    return `${years + 1}y`;
+  if (months === 0) {
+    return `${years}y`;
   }
 
   return `${years}y ${months}m`;
