@@ -1,4 +1,4 @@
-import { TODAY } from '@/lib/datetime';
+// import { TODAY } from '@/lib/datetime';
 
 import type { BaseEvent } from '../Timeline/TimelineEvent';
 
@@ -37,7 +37,7 @@ export const timelineEvents = [
   //   : null,
   {
     from: new Date('2025-01-15'),
-    to: TODAY,
+    to: new Date('2025-01-14'),
     title: 'Application Developer',
     description: 'PT Bank Central Asia Tbk | Intern',
     variant: 'blue',
