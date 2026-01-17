@@ -34,12 +34,6 @@ const FOOTER_LINKS: FooterSection[] = [
         rel: 'me',
         type: 'external',
       },
-      {
-        label: 'Monkeytype',
-        href: 'https://monkeytype.com/profile/siwakasen',
-        rel: 'me',
-        type: 'external',
-      },
     ],
   },
   {
