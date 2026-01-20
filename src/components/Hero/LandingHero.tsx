@@ -121,7 +121,7 @@ export const LandingHero = () => {
           Hi, I am Riksi! 👋
         </h1>
         <Paragraph>
-          I am a tech enthusiast{' '}
+          I am a software engineer{' '}
           <Mark>passionate with Linux and managing infrastructure.</Mark> I do
           homelabbing and self-host many services to explore infrastructure
           hands-on.

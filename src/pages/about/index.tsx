@@ -20,7 +20,7 @@ export default function About() {
         About me <EmojiSpan>🐧</EmojiSpan>
       </PageTitle>
       <Paragraph>
-        I am a tech enthusiast passionate about Linux and managing
+        I am a software engineer passionate about Linux and managing
         infrastructure. I love homelabbing and self-hosting services to explore
         how systems work hands-on. Theres something incredibly satisfying about
         building and maintaining your own infrastructure—it’s where I get to
