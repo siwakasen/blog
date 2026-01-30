@@ -1,6 +1,6 @@
+import Image from 'next/image';
 import { TECHNOLOGIES } from '@/constants/technologies';
 import { ExternalLogoLink } from '../Typography/ExternalLogoLink';
-import Image from 'next/image';
 
 export const TechnologyAnchors = () => {
   return (
