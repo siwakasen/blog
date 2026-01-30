@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { TECHNOLOGIES } from '@/constants/technologies';
 import { ExternalLogoLink } from '../Typography/ExternalLogoLink';
 
@@ -7,9 +8,13 @@ export const TechnologyAnchors = () => {
       {TECHNOLOGIES.map(({ name, href, logo }) => {
         return (
           <ExternalLogoLink key={name} href={href} shouldShowPreviewOnHover>
-            <span className='inline-flex h-20 w-20 items-center justify-center [&_svg]:h-full [&_svg]:w-full'>
-              {logo}
-            </span>
+            <Image
+              className="object-contain"
+              width={80}
+              height={80}
+              alt={name}
+              src={logo}
+            />
           </ExternalLogoLink>
         );
       })}

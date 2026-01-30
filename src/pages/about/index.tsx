@@ -45,7 +45,7 @@ export default function About() {
       <ProjectsList />
       <HorizontalDivider />
 
-      <SectionTitle>Techstacks 🚀</SectionTitle>
+      <SectionTitle>Techstack 🚀</SectionTitle>
       <div className="mt-6 flex justify-center gap-2 flex-wrap">
         <TechnologyAnchors />
       </div>
