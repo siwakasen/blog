@@ -122,7 +122,7 @@ export const LandingHero = () => {
         </h1>
         <Paragraph>
           I am a software engineer
-          <Mark> passionate with Linux</Mark> I do homelabbing and self-host
+          <Mark> passionate with Linux</Mark>. I do homelabbing and self-host
           many services to explore infrastructure
           hands-on.
         </Paragraph>
