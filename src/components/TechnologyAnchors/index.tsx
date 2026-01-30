@@ -1,27 +1,19 @@
-import { Fragment } from 'react';
-
 import { TECHNOLOGIES } from '@/constants/technologies';
-
-import { ExternalLink } from '../Typography/ExternalLink';
+import { ExternalLogoLink } from '../Typography/ExternalLogoLink';
 
 export const TechnologyAnchors = () => {
   return (
     <>
-      {TECHNOLOGIES.map(({ name, href }, index) => {
-        const isLastItem = index === TECHNOLOGIES.length - 1;
-        const prefix = isLastItem ? 'and ' : '';
-        const suffix = isLastItem ? '' : ', ';
-
+      {TECHNOLOGIES.map(({ name, href, logo }) => {
         return (
-          <Fragment key={name}>
-            {prefix}
-            <ExternalLink key={name} href={href} shouldShowPreviewOnHover>
-              {name}
-            </ExternalLink>
-            {suffix}
-          </Fragment>
+          <ExternalLogoLink key={name} href={href} shouldShowPreviewOnHover>
+            <span className='inline-flex h-20 w-20 items-center justify-center [&_svg]:h-full [&_svg]:w-full'>
+              {logo}
+            </span>
+          </ExternalLogoLink>
         );
       })}
     </>
   );
 };
+

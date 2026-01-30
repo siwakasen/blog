@@ -25,3 +25,22 @@ export const useAnchorClassName = () => {
     }
   `;
 };
+
+export const useLogoClassName = () => {
+  return css`
+    color: ${getHslaColor('primary', 1, { l: -12 })};
+
+    [data-theme='dark'] & {
+      color: ${getHslaColor('primary')};
+    }
+
+    text-decoration: none;
+    position: relative;
+    transition: var(--transition-faster);
+
+    &:hover,
+    &:focus {
+      color: ${getHslaColor('text')};
+    }
+  `;
+}
