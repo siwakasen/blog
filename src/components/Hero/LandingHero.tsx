@@ -128,8 +128,8 @@ export const LandingHero = () => {
         </Paragraph>
 
         <Paragraph>
-          I also enjoy software engineering, building various projects to
-          deliver digital solutions.
+          I also enjoy building apps and developing various projects from
+          backend to frontend to deliver digital solutions.
         </Paragraph>
 
         <div className={cn('mt-8', 'sm:mt-12', 'flex')}>
