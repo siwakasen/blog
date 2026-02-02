@@ -27,12 +27,12 @@ export default function About() {
       </Paragraph>
 
       <Paragraph>
-        I also enjoy software engineering, building various projects to deliver
-        digital solutions. Whether it’s crafting applications or configuring
-        servers, I’m driven by curiosity and the challenge of creating things
-        that work well. My diverse interests across development and
-        infrastructure give me a well-rounded perspective on how technology
-        comes together.
+        I also enjoy building apps and developing various projects from
+        backend to frontend to deliver digital solutions. Whether it’s
+        crafting applications or configuring servers, I’m driven by
+        curiosity and the challenge of creating things that work well.
+        My diverse interests across development and infrastructure give
+        me a well-rounded perspective on how technology comes together.
       </Paragraph>
 
       <HorizontalDivider />
