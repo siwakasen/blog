@@ -88,7 +88,7 @@ export const timelineEvents = [
     from: new Date('2021-08-01'),
     to: new Date('2025-11-29'),
     title: '🎓 Computer Science Student',
-    description: 'Atma Jaya Yogyakarta University',
+    description: 'Universitas Atma Jaya Yogyakarta',
     variant: 'amber',
     details: (
       <p>
