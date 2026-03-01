@@ -1,4 +1,4 @@
-import ProjectsList from '@/components/Projects/List';
+// import ProjectsList from '@/components/Projects/List';
 import { PageMetaTags } from '@/components/Seo/PageMetaTags';
 import { HorizontalDivider } from '@/components/Divider';
 import GitHubList from '@/components/GitHub/List';
@@ -40,9 +40,10 @@ export default function About() {
       <div className="my-12">
         <HistoryCalendar />
       </div>
+      {/* TODO: Make projects list.  */}
 
-      <SectionTitle>Recent Projects 📋</SectionTitle>
-      <ProjectsList />
+      {/* <SectionTitle>Recent Projects 📋</SectionTitle> */}
+      {/* <ProjectsList /> */}
       <HorizontalDivider />
 
       <SectionTitle>Techstack 🚀</SectionTitle>
