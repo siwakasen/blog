@@ -1,4 +1,4 @@
-import ProjectsList from '@/components/Projects/List';
+// import ProjectsList from '@/components/Projects/List';
 import { PageMetaTags } from '@/components/Seo/PageMetaTags';
 import { HorizontalDivider } from '@/components/Divider';
 import GitHubList from '@/components/GitHub/List';
