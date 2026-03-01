@@ -41,8 +41,8 @@ export default function About() {
         <HistoryCalendar />
       </div>
 
-      <SectionTitle>Recent Projects 📋</SectionTitle>
-      <ProjectsList />
+      {/* <SectionTitle>Recent Projects 📋</SectionTitle> */}
+      {/* <ProjectsList /> */}
       <HorizontalDivider />
 
       <SectionTitle>Techstack 🚀</SectionTitle>
