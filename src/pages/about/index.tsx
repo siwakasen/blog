@@ -40,6 +40,7 @@ export default function About() {
       <div className="my-12">
         <HistoryCalendar />
       </div>
+      {/* TODO: Make projects list.  */}
 
       {/* <SectionTitle>Recent Projects 📋</SectionTitle> */}
       {/* <ProjectsList /> */}
