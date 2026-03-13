@@ -11,7 +11,7 @@ export const projects: Project[] = [
     url: 'https://recaptcha.siwakasen.dev',
     repo: 'https://github.com/siwakasen/react-recaptcha-v3',
     coverImage:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RecaptchaLogo.svg/2560px-RecaptchaLogo.svg.png',
+      'https://upload.wikimedia.org/wikipedia/commons/a/ad/RecaptchaLogo.svg'
   },
   {
     name: 'Bali Travel Ride',
