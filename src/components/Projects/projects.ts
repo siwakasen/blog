@@ -7,6 +7,12 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: 'How To Say',
+    url: "https://say.siwakasen.dev",
+    repo: "https://github.com/stars/siwakasen/lists/how-to-say-in-english",
+    coverImage: 'https://say.siwakasen.dev/un.png',
+  },
+  {
     name: 'React Recaptcha v3',
     url: 'https://recaptcha.siwakasen.dev',
     repo: 'https://github.com/siwakasen/react-recaptcha-v3',
