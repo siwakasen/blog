@@ -47,9 +47,9 @@ export const timelineEvents = [
           {' '}
           Not long after finishing my previous internship, I continued my next
           internship at BCA. At here, I helped revamp a full-stack web
-          application by migrating it from legacy frameworks to Next.js,
-          modernizing the tech stack for better performance, maintainability,
-          and long-term relevance.
+          application by migrating it from legacy frameworks to modern
+          frameworks, modernizing the tech stack for better performance,
+          maintainability, and long-term relevance.
         </p>
         <p>
           I also learned to strengthened frontend web security by integrating
