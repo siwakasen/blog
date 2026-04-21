@@ -7,9 +7,9 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: 'How To Say',
-    url: "https://say.siwakasen.dev",
-    repo: "https://github.com/stars/siwakasen/lists/how-to-say-in-english",
+    name: 'How to Pronounce',
+    url: 'https://say.siwakasen.dev',
+    repo: 'https://github.com/stars/siwakasen/lists/how-to-pronounce-in-english',
     coverImage: 'https://say.siwakasen.dev/un.png',
   },
   {
@@ -17,7 +17,7 @@ export const projects: Project[] = [
     url: 'https://recaptcha.siwakasen.dev',
     repo: 'https://github.com/siwakasen/react-recaptcha-v3',
     coverImage:
-      'https://upload.wikimedia.org/wikipedia/commons/a/ad/RecaptchaLogo.svg'
+      'https://upload.wikimedia.org/wikipedia/commons/a/ad/RecaptchaLogo.svg',
   },
   {
     name: 'Bali Travel Ride',
