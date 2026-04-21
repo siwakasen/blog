@@ -13,13 +13,6 @@ export const projects: Project[] = [
     coverImage: 'https://say.siwakasen.dev/un.png',
   },
   {
-    name: 'React Recaptcha v3',
-    url: 'https://recaptcha.siwakasen.dev',
-    repo: 'https://github.com/siwakasen/react-recaptcha-v3',
-    coverImage:
-      'https://upload.wikimedia.org/wikipedia/commons/a/ad/RecaptchaLogo.svg',
-  },
-  {
     name: 'Bali Travel Ride',
     url: 'https://travel.vulpbox.com',
     repo: 'https://github.com/siwakasen/tourism-microservices',
