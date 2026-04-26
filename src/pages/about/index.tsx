@@ -15,7 +15,11 @@ import { cn } from '@/utils/styles/classNames';
 export default function About() {
   return (
     <>
-      <PageMetaTags />
+      <PageMetaTags
+        title="About | Siwakasen"
+        description="Software engineer passionate about Linux, homelabbing, and self-hosting. Building apps from backend to frontend."
+        pageType="profile"
+      />
       <PageTitle>
         About me <EmojiSpan>🐧</EmojiSpan>
       </PageTitle>

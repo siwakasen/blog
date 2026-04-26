@@ -105,6 +105,41 @@ async function generateSiteMap() {
     '!src/pages/api',
   ]);
 
+  const buildDate = new Date().toISOString().split('T')[0];
+
+  // Read blog post dates from frontmatter for lastmod
+  const postDates = {};
+  const posts = await globby(['src/pages/posts/**/index.mdx']);
+  posts.forEach((post) => {
+    const content = fs.readFileSync(post, 'utf-8');
+    const date = getDateInFrontMatter(content);
+    // Extract post slug from path: src/pages/posts/<slug>/index.mdx
+    const slug = post.replace('src/pages/posts/', '').replace('/index.mdx', '');
+    if (date) {
+      postDates[slug] = new Date(date).toISOString().split('T')[0];
+    }
+  });
+
+  const getPageMeta = (route) => {
+    if (route === '') {
+      // Homepage
+      return { changefreq: 'weekly', priority: '1.0', lastmod: buildDate };
+    }
+    if (route === 'blog') {
+      return { changefreq: 'weekly', priority: '0.8', lastmod: buildDate };
+    }
+    if (route.startsWith('posts/')) {
+      const slug = route.replace('posts/', '');
+      return {
+        changefreq: 'monthly',
+        priority: '0.7',
+        lastmod: postDates[slug] || buildDate,
+      };
+    }
+    // About and other pages
+    return { changefreq: 'monthly', priority: '0.5', lastmod: buildDate };
+  };
+
   const sitemap = `
       <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -120,9 +155,14 @@ async function generateSiteMap() {
                 ? ''
                 : path.replace(/^\//, '').replace(/\/index$/, '');
 
+            const meta = getPageMeta(route);
+
             return `
                   <url>
                     <loc>${`https://siwakasen.dev/${route}`}</loc>
+                    <lastmod>${meta.lastmod}</lastmod>
+                    <changefreq>${meta.changefreq}</changefreq>
+                    <priority>${meta.priority}</priority>
                   </url>`;
           })
           .join('')}

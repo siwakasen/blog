@@ -47,7 +47,11 @@ export default function BlogPage({ posts }: Props) {
 
   return (
     <>
-      <PageMetaTags />
+      <PageMetaTags
+        title="Blog | Siwakasen"
+        description="Read articles about Linux, Kubernetes, self-hosting, homelab setups, and software engineering by Siwakasen."
+        pageType="website"
+      />
       <Flipped flipId="latest-writing-heading" spring="noWobble" translate>
         {(flippedProps: any) => (
           <PageTitle {...flippedProps}>
