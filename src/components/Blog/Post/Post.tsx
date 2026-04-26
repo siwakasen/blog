@@ -61,6 +61,8 @@ export default function Post({ post }: Readonly<Props>) {
           image={createOgImageUrl(meta.ogImage)}
           readingTime={meta.readingTime}
           publishDate={postDateTemplate.render(new Date(meta.date))}
+          pageType="article"
+          tags={meta.tags}
         />
         <PostHeader meta={meta} />
 

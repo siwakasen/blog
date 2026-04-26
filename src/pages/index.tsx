@@ -14,7 +14,7 @@ type Props = {
 export default function Home({ posts }: Readonly<Props>) {
   return (
     <>
-      <PageMetaTags />
+      <PageMetaTags pageType="website" />
 
       <section aria-label="hero section" className=" min-w-screen">
         <div className="absolute left-1/2 -translate-x-1/2 top-20 w-screen max-w-full">
