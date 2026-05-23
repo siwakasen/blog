@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base
+FROM node:26-alpine AS base
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 FROM base AS deps
@@ -38,7 +38,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # Create user (for file ownership, not for running process)
 RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
+  adduser --system --uid 1001 nextjs
 
 # Copy application files
 COPY --from=builder /app/public ./public
