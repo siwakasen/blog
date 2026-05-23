@@ -12,4 +12,9 @@ export const projects: Project[] = [
     repo: 'https://github.com/stars/siwakasen/lists/how-to-pronounce-in-english',
     coverImage: 'https://say.siwakasen.dev/un.png',
   },
+  {
+    name: 'Sekolah Tadika Prima',
+    url: 'https://demo.siwakasen.dev',
+    coverImage: 'sekolah-tadika-prima.webp',
+  },
 ];
