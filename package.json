@@ -2,6 +2,7 @@
   "name": "blog",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.27.0",
   "scripts": {
     "dev": "cross-env NODE_ENV=development next-remote-watch ./src/pages/posts",
     "build": "cross-env NODE_ENV=production next build && npm run build:sitemap-rss",
@@ -95,6 +96,9 @@
     "goober": "goober is used by react-hot-toast and in parts of the web where using Tailwind require too much customization"
   },
   "pnpm": {
+    "ignoredBuiltDependencies": [
+      "core-js"
+    ],
     "onlyBuiltDependencies": [
       "sharp"
     ]

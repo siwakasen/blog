@@ -1,5 +1,5 @@
-FROM node:20-alpine AS base
-RUN corepack enable && corepack prepare pnpm@latest --activate
+FROM node:lts-alpine3.23 AS base
+RUN corepack enable && corepack prepare pnpm@10.27.0 --activate
 
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
