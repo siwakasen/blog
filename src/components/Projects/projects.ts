@@ -14,7 +14,7 @@ export const projects: Project[] = [
   },
   {
     name: 'Sekolah Tadika Prima',
-    url: 'https://demo.siwakasen.dev',
+    url: 'https://sekolahtadikaprima.sch.id',
     coverImage: 'sekolah-tadika-prima.webp',
   },
 ];
