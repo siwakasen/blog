@@ -58,9 +58,9 @@ const getDateInFrontMatter = (mdxContent) => {
 
 async function generateRSSFeed() {
   const feed = new RSS({
-    title: 'siwakasen.dev',
-    site_url: 'https://siwakasen.dev',
-    feed_url: 'https://siwakasen.dev/feed.xml',
+    title: 'www.siwakasen.dev',
+    site_url: 'https://www.siwakasen.dev',
+    feed_url: 'https://www.siwakasen.dev/feed.xml',
   });
   const posts = await globby(['src/pages/posts/**/index.mdx']);
   let contents = posts.map((post, index) => {
@@ -87,7 +87,7 @@ async function generateRSSFeed() {
     feed.item({
       title: getTitleInFrontMatter(content),
       guid: path,
-      url: `https://siwakasen.dev${path}`,
+      url: `https://www.siwakasen.dev${path}`,
       date: getDateInFrontMatter(content),
       description: getDescriptionInFrontMatter(content),
       custom_elements: [{ author: [{ name: 'Siwakasen' }] }],
@@ -159,7 +159,7 @@ async function generateSiteMap() {
 
             return `
                   <url>
-                    <loc>${`https://siwakasen.dev/${route}`}</loc>
+                    <loc>${`https://www.siwakasen.dev/${route}`}</loc>
                     <lastmod>${meta.lastmod}</lastmod>
                     <changefreq>${meta.changefreq}</changefreq>
                     <priority>${meta.priority}</priority>
