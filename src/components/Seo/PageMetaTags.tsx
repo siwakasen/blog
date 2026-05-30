@@ -12,7 +12,7 @@ const defaultDescription =
 const defaultOgImageTitle = `Hi, I am Siwakasen!`;
 const defaultOgImage = createOgImageUrl({ title: defaultOgImageTitle });
 
-const siteName = 'siwakasen.dev';
+const siteName = 'www.siwakasen.dev';
 const authorName = 'Siwakasen';
 const authorUrl = 'https://github.com/siwakasen';
 
@@ -158,7 +158,10 @@ export const PageMetaTags: React.FC<Props> = ({
 
       {/* Open Graph meta tags */}
       <meta property="og:url" content={url} />
-      <meta property="og:type" content={pageType === 'article' ? 'article' : 'website'} />
+      <meta
+        property="og:type"
+        content={pageType === 'article' ? 'article' : 'website'}
+      />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
