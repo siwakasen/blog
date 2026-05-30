@@ -1,17 +1,17 @@
 ---
-title: Linux Hypervisor Setup (libvirt/qemu/kvm)
+title: Set Up a Linux Hypervisor with KVM, QEMU, and libvirt
 description:
-  With Linux, you can combine different tools to create powerful setups. One example is provisioning VMs, and you can turn an old or unused laptop or computer into a hypervisor without spending money on cloud services.
+  Turn an old laptop or server into a Linux hypervisor with KVM, QEMU, and libvirt, then create and manage virtual machines from the command line.
 date: '2025-12-21T08:49:06.000Z'
 ogImage:
-  title: Linux Hypervisor Setup
+  title: Linux Hypervisor with KVM, QEMU, and libvirt
 readingTime: 15 min read
 tags: ['tech','linux','server','homelab']
 ---
 
 {/* !start-of-preview */}
 
-With Linux, you can combine different tools to create powerful setups. One example is provisioning VMs, and you can turn an old or unused laptop or computer into a hypervisor without spending money on cloud services.
+With Linux, you can combine different tools to create powerful setups. One example is provisioning VMs, and you can turn an old or unused laptop or server into a hypervisor without spending money on cloud services.
 
 {/* !end-of-preview */}
 
@@ -74,7 +74,7 @@ sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients virtinst brid
   </div>
 
   
-#In # Permissions
+## Permissions
 Several configuration steps are required so we can interact with qemu:///system. 
 This allows virtual machines to run as root, which is usually what we want, and it is also 
 the default mode used by virt-manager. A blog post by [Colin Robinson explains the differences 
@@ -305,5 +305,10 @@ libvirt offers many more advanced features worth exploring, such as:
 For those looking to expand their setup, consider exploring these topics to build a more 
 robust virtualization environment. The configuration we've set up provides a solid foundation 
 for running a small-scale private cloud or development environment.
+
+## Related Posts
+
+- [Build a highly available K3s cluster on top of this homelab setup](/posts/k3s-tailscale-cloudflare)
+- [Deploy a highly available PostgreSQL cluster with CloudNativePG](/posts/db-cluster-cnpg)
 
 Happy virtualizing! 😃

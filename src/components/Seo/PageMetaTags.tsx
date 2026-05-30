@@ -23,6 +23,7 @@ interface Props {
   title?: string;
   description?: string;
   publishDate?: string;
+  modifiedDate?: string;
   readingTime?: string;
   pageType?: PageType;
   tags?: string[];
@@ -37,6 +38,7 @@ const generateJsonLd = ({
   description,
   image,
   publishDate,
+  modifiedDate,
   url,
   tags,
 }: {
@@ -45,6 +47,7 @@ const generateJsonLd = ({
   description: string;
   image: string;
   publishDate: string;
+  modifiedDate: string;
   url: string;
   tags: string[];
 }) => {
@@ -64,7 +67,7 @@ const generateJsonLd = ({
       description: description,
       image: [image],
       datePublished: publishDate,
-      dateModified: publishDate,
+      dateModified: modifiedDate || publishDate,
       author: author,
       publisher: author,
       mainEntityOfPage: {
@@ -134,6 +137,7 @@ export const PageMetaTags: React.FC<Props> = ({
   title = defaultTitle,
   description = defaultDescription,
   publishDate = '',
+  modifiedDate = '',
   pageType = 'website',
   tags = [],
 }) => {
@@ -146,6 +150,7 @@ export const PageMetaTags: React.FC<Props> = ({
     description,
     image,
     publishDate,
+    modifiedDate,
     url,
     tags,
   });
@@ -167,10 +172,20 @@ export const PageMetaTags: React.FC<Props> = ({
       <meta property="og:image" content={image} />
       <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content="en_US" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
 
       {/* Article-specific OG tags */}
       {pageType === 'article' && publishDate && (
         <meta property="article:published_time" content={publishDate} />
+      )}
+      {pageType === 'article' && (modifiedDate || publishDate) && (
+        <meta
+          property="article:modified_time"
+          content={modifiedDate || publishDate}
+        />
       )}
       {pageType === 'article' && (
         <meta property="article:author" content={authorUrl} />

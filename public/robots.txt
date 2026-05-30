@@ -5,9 +5,8 @@
 User-agent: *
 Allow: /
 
-# Disallow API routes and internal Next.js paths
-Disallow: /api/
-Disallow: /_next/
+# Disallow non-indexable pages only. Next.js assets and OG images must stay
+# crawlable so search engines and social scrapers can render previews.
 Disallow: /404
 
 # Sitemap location
@@ -15,4 +14,3 @@ Sitemap: https://www.siwakasen.dev/sitemap.xml
 
 # RSS Feed (allowed and discoverable)
 # Feed is accessible at: https://www.siwakasen.dev/feed.xml
-

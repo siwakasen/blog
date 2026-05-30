@@ -1,9 +1,9 @@
 ---
-title: Minimal Setup HA Database Clustering with CloudNativePG
-description: Minimal Setup for a highly available PostgreSQL cluster with CloudNativePG
+title: Set Up a Highly Available PostgreSQL Cluster with CloudNativePG
+description: Learn how to deploy a highly available PostgreSQL cluster on Kubernetes using CloudNativePG, with replicas, services, and application connection strings.
 date: '2025-12-30T17:53:17.000Z'
 ogImage:
-  title: Minimal Setup HA Database Clustering with CloudNativePG
+  title: Highly Available PostgreSQL with CloudNativePG
 readingTime: 10 min read
 tags: ['tech', 'database', 'kubernetes', 'postgresql']
 ---
@@ -11,7 +11,7 @@ tags: ['tech', 'database', 'kubernetes', 'postgresql']
 
 {/* !start-of-preview */}
 
-In my previous post, I set up a Kubernetes cluster with Tailscale and Cloudflare Tunnel. Now let's build something useful with it. In this post, we're going to spin up a highly available PostgreSQL database cluster using CNPG.
+In my [previous post](/posts/k3s-tailscale-cloudflare), I set up a Kubernetes cluster with Tailscale and Cloudflare Tunnel. Now let's build something useful with it. In this post, we're going to spin up a highly available PostgreSQL database cluster using CNPG.
 
 {/* !end-of-preview */}
 
@@ -193,5 +193,10 @@ postgres://myuser:[your-password]@psql-cluster-rw.default.svc.cluster.local:5432
 
 ```
 <Panel title='Congratulations 🥳' type='warning'>
-You successfully set up a highly available PostgreSQL database cluster using CNPG. If you planning to use this CNPG for production, please check the [CNPG documentation](https://cloudnative-pg.io/docs/) for more details.
+You successfully set up a highly available PostgreSQL database cluster using CNPG. If you are planning to use this CNPG for production, please check the [CNPG documentation](https://cloudnative-pg.io/docs/) for more details.
 </Panel>
+
+## Related Posts
+
+- [Build the highly available K3s cluster used in this guide](/posts/k3s-tailscale-cloudflare)
+- [Prepare a Linux hypervisor for a homelab Kubernetes environment](/posts/linux-hypervisor-setup)

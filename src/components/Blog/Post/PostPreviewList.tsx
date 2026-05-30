@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import tinytime from 'tinytime';
 import { useRouter } from 'next/router';
 import { Flipped } from 'react-flip-toolkit';
@@ -5,7 +6,6 @@ import { css } from 'goober';
 
 import { InternalLink } from '@/components/Typography/InternalLink';
 import { Tag } from '@/components/common/Tag';
-import { SkipSSR } from '@/components/SkipSSR';
 import { MDXProvider } from '@/components/common/MDX';
 import { getHslaColor } from '@/lib/styles/colors';
 import { Post } from '@/blog/types';
@@ -74,11 +74,7 @@ export const PostPreviewList = ({ posts = [] }: Props) => {
                           <dt className="sr-only">Published on</dt>
                           <dd className="text-xs leading-6 font text-theme-subtitle">
                             <time dateTime={metadata.date}>
-                              <SkipSSR fallback={metadata.date}>
-                                {postDateTemplate.render(
-                                  new Date(metadata.date),
-                                )}
-                              </SkipSSR>
+                              {postDateTemplate.render(new Date(metadata.date))}
                             </time>
                           </dd>
                         </dl>
@@ -92,16 +88,21 @@ export const PostPreviewList = ({ posts = [] }: Props) => {
                         <dl>
                           <dt className="sr-only">Post category</dt>
                           <dd className="flex space-x-2 text-xs">
-                            {metadata.tags.map((tag) => (
-                              <Tag key={tag} variant="secondary">
-                                <InternalLink
-                                  className="hover:underline"
-                                  href={`/blog?tags=${tag}`}
-                                  isNotFancy
-                                >
-                                  {tag}
-                                </InternalLink>
-                              </Tag>
+                            {metadata.tags.map((tag, index) => (
+                              <Fragment key={tag}>
+                                <Tag variant="secondary">
+                                  <InternalLink
+                                    className="hover:underline"
+                                    href={`/blog?tags=${tag}`}
+                                    isNotFancy
+                                  >
+                                    {tag}
+                                  </InternalLink>
+                                </Tag>
+                                {index !== metadata.tags.length - 1 && (
+                                  <span className="sr-only">, </span>
+                                )}
+                              </Fragment>
                             ))}
                           </dd>
                         </dl>
