@@ -1,6 +1,5 @@
 import { useLayoutEffect, useEffect, useContext } from 'react';
 import { spring } from 'react-flip-toolkit';
-import tinytime from 'tinytime';
 import { useRouter } from 'next/router';
 import { css } from 'goober';
 import Giscus from '@giscus/react';
@@ -15,7 +14,7 @@ import { cn } from '@/utils/styles/classNames';
 import { createOgImageUrl } from '@/utils/createOgImageUrl';
 import { PostHeader } from './PostHeader';
 import { TableOfContents } from './TableOfContents';
-const postDateTemplate = tinytime('{MM} {DD}, {YYYY}');
+
 const useIsomorphicLayoutEffect =
   typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
@@ -60,7 +59,8 @@ export default function Post({ post }: Readonly<Props>) {
           description={meta.description}
           image={createOgImageUrl(meta.ogImage)}
           readingTime={meta.readingTime}
-          publishDate={postDateTemplate.render(new Date(meta.date))}
+          publishDate={meta.date}
+          modifiedDate={meta.date}
           pageType="article"
           tags={meta.tags}
         />

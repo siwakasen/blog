@@ -1,23 +1,23 @@
 ---
-title: High Available K3s Cluster with Tailscale and Cloudflare Tunnel
-description: Setting up a High Available K3s cluster with Tailscale and Cloudflare tunnel
+title: Highly Available K3s Cluster with Tailscale and Cloudflare Tunnel
+description: Build a highly available K3s cluster across networks using Tailscale for private node connectivity and Cloudflare Tunnel for public service access.
 date: '2025-12-26T19:01:31.000Z'
 ogImage:
-  title: High Available K3s Cluster with Tailscale and Cloudflare Tunnel
+  title: Highly Available K3s Cluster with Tailscale and Cloudflare Tunnel
 readingTime: 15 min read
 tags: ['tech', 'network', 'kubernetes', 'linux']
 ---
 
 {/* !start-of-preview */}
 
-Setting up a high available kubernetes cluster with multiple server nodes across different networks can be challenging. In this post, I'll walk you through creating a lightweight kubernetes cluster using K3s, Tailscale for secure node-to-node communication, and Cloudflare tunnels for secure external access.
+Setting up a highly available Kubernetes cluster with multiple server nodes across different networks can be challenging. In this post, I'll walk you through creating a lightweight Kubernetes cluster using K3s, Tailscale for secure node-to-node communication, and Cloudflare Tunnel for secure external access.
 
 {/* !end-of-preview */}
 
 
 ## Goals
 Before diving in, let's understand what we're going to achieve:
-- High available K3s cluster with multiple server nodes across different networks
+- Highly available K3s cluster with multiple server nodes across different networks
 - Secure communication between nodes using Tailscale
 - Network routes for pod-to-pod communication
 - Public access to services inside the cluster via Cloudflare tunnels
@@ -347,6 +347,11 @@ And that's a wrap! 🎉 We've just set up a fun little K3s cluster, connected it
 ### If Things Go Sideways
 - Check if Tailscale is happy: `tailscale status`
 - Make sure your node's firewall doesn't block the tailscale and K3s connections.
+
+## Related Posts
+
+- [Prepare Linux virtual machines with KVM, QEMU, and libvirt](/posts/linux-hypervisor-setup)
+- [Deploy a highly available PostgreSQL cluster with CloudNativePG](/posts/db-cluster-cnpg)
 
 ### Final Thoughts
 This setup is great for experiments and learning. It's like having a mini cloud in your pocket! Feel free to break things, rebuild, and explore. The best way to learn is by trying stuff out and seeing what happens.
