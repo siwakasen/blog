@@ -24,19 +24,20 @@ export default function About() {
         About me <EmojiSpan>🐧</EmojiSpan>
       </PageTitle>
       <Paragraph>
-        I am a software engineer passionate about Linux. I do homelabbing and self-hosting services to explore
-        how systems work hands-on. Theres something incredibly satisfying about
-        building and maintaining your own infrastructure—it’s where I get to
-        experiment, learn, and truly understand technology from the ground up.
+        I am a software engineer passionate about Linux. I do homelabbing and
+        self-hosting services to explore how systems work hands-on. Theres
+        something incredibly satisfying about building and maintaining your own
+        infrastructure—it’s where I get to experiment, learn, and truly
+        understand technology from the ground up.
       </Paragraph>
 
       <Paragraph>
-        I also enjoy building apps and developing various projects from
-        backend to frontend to deliver digital solutions. Whether it’s
-        crafting applications or configuring servers, I’m driven by
-        curiosity and the challenge of creating things that work well.
-        My diverse interests across development and infrastructure give
-        me a well-rounded perspective on how technology comes together.
+        I also enjoy building apps and developing various projects from backend
+        to frontend to deliver digital solutions. Whether it’s crafting
+        applications or configuring servers, I’m driven by curiosity and the
+        challenge of creating things that work well. My diverse interests across
+        development and infrastructure give me a well-rounded perspective on how
+        technology comes together.
       </Paragraph>
 
       <HorizontalDivider />
@@ -44,7 +45,6 @@ export default function About() {
       <div className="my-12">
         <HistoryCalendar />
       </div>
-      {/* TODO: Make projects list.  */}
 
       <SectionTitle>Recent Projects 📋</SectionTitle>
       <ProjectsList />
