@@ -1,19 +1,19 @@
-import { Lora, Work_Sans } from '@next/font/google';
+import localFont from '@next/font/local';
 
-export const mainFont = Work_Sans({
+export const mainFont = localFont({
+  src: './files/work-sans-latin-variable.woff2',
   variable: '--main-font',
   display: 'swap',
-  subsets: ['latin'],
   preload: true,
-  weight: ['400', '700'],
+  weight: '400 700',
 });
 
-export const headingFont = Lora({
+export const headingFont = localFont({
+  src: './files/lora-latin-variable.woff2',
   variable: '--heading-font',
   display: 'swap',
-  subsets: ['latin'],
   preload: true,
-  weight: ['400', '500', '700'],
+  weight: '400 700',
 });
 
 export const fontsClasses = `${mainFont.variable} ${headingFont.variable}`;
