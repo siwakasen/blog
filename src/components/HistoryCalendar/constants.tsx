@@ -79,7 +79,7 @@ export const timelineEvents = [
   },
   {
     from: new Date('2024-08-01'),
-    to: new Date('2025-01-04'),
+    to: new Date('2024-12-31'),
     title: 'Web Developer',
     description: 'PT Winnicode Garuda Indonesia | Intern',
     variant: 'red',
