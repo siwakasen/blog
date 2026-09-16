@@ -36,3 +36,4 @@ yarn-error.log*
 
 # relative-ci
 webpack-stats.json
+AGENTS.md
