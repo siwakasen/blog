@@ -7,14 +7,19 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: 'How to Pronounce',
-    url: 'https://say.siwakasen.dev/?utm_source=blog',
-    repo: 'https://github.com/stars/siwakasen/lists/how-to-pronounce-in-english',
-    coverImage: 'https://say.siwakasen.dev/un.png',
+    name: 'Aluminium Forecasting',
+    url: 'https://prediction.fortech.co.id/?utm_source=blog',
+    coverImage: 'prediction.webp',
   },
   {
     name: 'Sekolah Tadika Prima',
     url: 'https://sekolahtadikaprima.sch.id/?utm_source=blog',
     coverImage: 'sekolah-tadika-prima.webp',
+  },
+  {
+    name: 'How to Pronounce',
+    url: 'https://say.siwakasen.dev/?utm_source=blog',
+    repo: 'https://github.com/stars/siwakasen/lists/how-to-pronounce-in-english',
+    coverImage: 'https://say.siwakasen.dev/un.png',
   },
 ];
