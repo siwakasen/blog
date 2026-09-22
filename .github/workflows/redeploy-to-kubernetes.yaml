@@ -1,4 +1,4 @@
-name: 🚀 Deploy To Kubernetes
+name: 🚀 Redeploy To Kubernetes
 on: workflow_dispatch
 
 jobs:
@@ -16,10 +16,12 @@ jobs:
       - uses: actions-hub/kubectl@master
         name: 🚀 Deploy to Kubernetes
         with:
-          args: rollout restart deployment ${{ vars.DEPLOYMENT_NAME }} -n ${{ vars.DEPLOYMENT_NAMESPACES }}
+          args:
+            rollout restart deployment ${{ vars.DEPLOYMENT_NAME }} -n ${{
+            vars.DEPLOYMENT_NAMESPACES }}
       - uses: actions-hub/kubectl@master
         name: 🧐 Verify Deployment
         with:
-          args: rollout status deployment ${{ vars.DEPLOYMENT_NAME }} -n ${{ vars.DEPLOYMENT_NAMESPACES }}
-
-      
+          args:
+            rollout status deployment ${{ vars.DEPLOYMENT_NAME }} -n ${{
+            vars.DEPLOYMENT_NAMESPACES }}

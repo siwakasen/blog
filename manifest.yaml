@@ -1,0 +1,56 @@
+# NOTE: Mounting to volume is optional
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: blog-nginx-logs
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog
+spec:
+  type: ClusterIP
+  selector:
+    app: blog
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: blog
+  template:
+    metadata:
+      labels:
+        app: blog
+    spec:
+      imagePullSecrets:
+        - name: registry-credentials
+      containers:
+        - name: blog
+          image: '{your-container-registry}:latest' # change this
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-logs
+              mountPath: /var/log/nginx
+      volumes:
+        - name: nginx-logs
+          persistentVolumeClaim:
+            claimName: blog-nginx-logs
