@@ -7,6 +7,11 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: 'Dashboard Industrial Intelligence',
+    url: 'https://tic.fortech.co.id/?utm_source=blog',
+    coverImage: 'industrial-intelligence.webp',
+  },
+  {
     name: 'Aluminium Forecasting',
     url: 'https://prediction.fortech.co.id/?utm_source=blog',
     coverImage: 'prediction.webp',
