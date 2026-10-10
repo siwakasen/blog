@@ -39,11 +39,9 @@ spec:
       labels:
         app: blog
     spec:
-      imagePullSecrets:
-        - name: registry-credentials
       containers:
         - name: blog
-          image: '{your-container-registry}:latest' # change this
+          image: ghcr.io/siwakasen/blog:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
