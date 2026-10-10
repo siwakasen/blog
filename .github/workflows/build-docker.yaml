@@ -4,6 +4,13 @@ on:
   push:
     branches: [master]
 
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE_NAME: ghcr.io/${{ github.repositoy }}
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -33,27 +40,18 @@ jobs:
           else
             echo "skip=false" >> $GITHUB_ENV
           fi
-
-      - name: Log in to Registry
+      - uses: docker/login-action@v3
         if: env.skip == 'false'
-        run: |
-          echo ${{ secrets.REGISTRY_TOKEN }} | docker login \
-            -u ${{ secrets.REGISTRY_USER }} \
-          --password-stdin ${{ secrets.REGISTRY_URL }}
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push image
-        if: |
-          env.skip == 'false'
-        run: |
-          IMAGE=${{ secrets.REGISTRY_URL }}/${{ vars.IMAGE_NAME }}
-          docker build \
-            --build-arg NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }} \
-            -f Dockerfile -t $IMAGE:latest -t $IMAGE:sha-${SHORT_SHA} .
-          docker push $IMAGE:latest
-          docker push $IMAGE:sha-${SHORT_SHA} 
-
-      - name: Logout from Registry
+      - uses: docker/build-push-action@v6
         if: env.skip == 'false'
-        run: |
-          docker logout
-
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.IMAGE_NAME }}:latest
