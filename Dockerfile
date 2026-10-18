@@ -56,6 +56,10 @@ RUN cat > /app/start.sh <<'EOF'
 #!/bin/sh
 set -e
 
+if [ -f /var/log/nginx/access.log ]; then
+    tail -n 100 /var/log/nginx/access.log || true
+fi
+
 echo "Starting Next.js server..."
 node server.js &
 NEXTJS_PID=$!
