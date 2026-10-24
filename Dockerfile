@@ -18,7 +18,7 @@ ENV NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL_ARG}
 ENV NEXT_SHARP_PATH="/app/node_modules/sharp"
 RUN pnpm run build
 
-FROM node:20-alpine AS runner
+FROM node:22.23.4-alpine AS runner
 WORKDIR /app
 
 # Install dependencies including dumb-init for proper process management
