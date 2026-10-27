@@ -1,4 +1,4 @@
-# robots.txt for www.siwakasen.dev
+# robots.txt for www.siwakasen.web.id
 # Standard-compliant robots.txt file
 
 # Allow all search engines to crawl the site
@@ -10,7 +10,7 @@ Allow: /
 Disallow: /404
 
 # Sitemap location
-Sitemap: https://www.siwakasen.dev/sitemap.xml
+Sitemap: https://www.siwakasen.web.id/sitemap.xml
 
 # RSS Feed (allowed and discoverable)
-# Feed is accessible at: https://www.siwakasen.dev/feed.xml
+# Feed is accessible at: https://www.siwakasen.web.id/feed.xml
