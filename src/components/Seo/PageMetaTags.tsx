@@ -12,7 +12,7 @@ const defaultDescription =
 const defaultOgImageTitle = `Hi, I am Siwakasen!`;
 const defaultOgImage = createOgImageUrl({ title: defaultOgImageTitle });
 
-const siteName = 'www.siwakasen.dev';
+const siteName = 'www.siwakasen.web.id';
 const authorName = 'Siwakasen';
 const authorUrl = 'https://github.com/siwakasen';
 

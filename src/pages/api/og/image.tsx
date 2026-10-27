@@ -9,7 +9,7 @@ export const config = {
 
 export default async function (req: NextRequest) {
   const url = req.nextUrl;
-  const title = url.searchParams.get('title') || 'www.siwakasen.dev';
+  const title = url.searchParams.get('title') || 'www.siwakasen.web.id';
   const description = url.searchParams.get('description');
 
   return new ImageResponse(

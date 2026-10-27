@@ -23,8 +23,8 @@ export const projects: Project[] = [
   },
   {
     name: 'How to Pronounce',
-    url: 'https://say.siwakasen.dev/?utm_source=blog',
+    url: 'https://say.siwakasen.web.id/?utm_source=blog',
     repo: 'https://github.com/stars/siwakasen/lists/how-to-pronounce-in-english',
-    coverImage: 'https://say.siwakasen.dev/un.png',
+    coverImage: 'https://say.siwakasen.web.id/un.png',
   },
 ];
